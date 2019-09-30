@@ -1,0 +1,35 @@
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="application.yml">
+
+    </properties>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+<!--    别名-->
+    <typeAliases>
+    <!--<typeAlias type="com.zyethan.bean.User" alias="userz"/>-->
+    <!--别名是类名的小写形式 user car UserDetail userdetail-->
+        <package name="com.wuyan.mall.bean"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/><!--MANAGED-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver-class-name}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--mybatis的映射文件 sql和代码进行分离-->
+    <mappers>
+        <!--使用扫描包的实行加载映射文件-->
+        <package name="com.wuyan.mall.mapper"/>   <!--使用的配置-->
+    </mappers>
+</configuration>
