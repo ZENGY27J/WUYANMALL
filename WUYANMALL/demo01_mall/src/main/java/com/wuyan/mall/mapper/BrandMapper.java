@@ -3,8 +3,10 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.Brand;
 import com.wuyan.mall.bean.BrandExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface BrandMapper {
     long countByExample(BrandExample example);
 

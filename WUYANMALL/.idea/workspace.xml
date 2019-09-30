@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a5f1797-6c99-4392-9b2d-406b88b5efb9" name="Default Changelist" comment="" />
+    <list default="true" id="7a5f1797-6c99-4392-9b2d-406b88b5efb9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_5_1_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_autoconfigure_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_starter_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/mallBean/MallBrand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/MallController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/service/mallService/MallService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/service/mallService/MallServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/util/MallUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/vo/PageInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Region.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/BrandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/BrandMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/CategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/CategoryMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/RegionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/RegionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/BrandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/BrandMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/CategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/CategoryMapper.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/demo01_mall/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,14 +38,33 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/MallController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2253#2254#0" expanded="true" />
+                <element signature="e#2279#2280#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -32,17 +78,32 @@
         <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/LogicController.java" />
         <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/config/CorsConfig.java" />
         <option value="$PROJECT_DIR$/demo01_mall/src/main/resources/mybatis.xml" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Region.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/RegionMapper.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/mallBean/CategoryL1.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Category.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/CategoryMapper.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/CategoryMapper.xml" />
         <option value="$PROJECT_DIR$/demo01_mall/pom.xml" />
         <option value="$PROJECT_DIR$/demo01_mall/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/mallBean/Brand.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/service/mallService/MallService.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/BrandMapper.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/BrandMapper.xml" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/util/MallUtil.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/vo/PageInfo.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/service/mallService/MallServiceImpl.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/MallController.java" />
+        <option value="$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/mallBean/MallBrand.java" />
       </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="C:\Users\zy1201\Documents\java_develop\maven\repository" />
-        <option name="mavenHome" value="$PROJECT_DIR$/../../java_develop/apache-maven-3.6.1" />
-        <option name="userSettingsFile" value="C:\Users\zy1201\Documents\java_develop\apache-maven-3.6.1\conf\settings.xml" />
+        <option name="localRepository" value="E:\java_soft\apache-maven-3.6.0\repository" />
+        <option name="mavenHome" value="E:/java_soft/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="E:\java_soft\apache-maven-3.6.0\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -52,11 +113,16 @@
     <option name="width" value="1065" />
     <option name="height" value="1010" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -75,34 +141,10 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="WUYANMALL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo01_mall" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WUYANMALL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo01_mall" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mall" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WUYANMALL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo01_mall" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -112,7 +154,8 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569820122472" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569857545458" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -129,6 +172,11 @@
     </key>
   </component>
   <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
     <option name="ruleStates">
       <list>
         <RuleState>
@@ -139,6 +187,7 @@
         </RuleState>
       </list>
     </option>
+    <option name="contentProportion" value="0.14605874" />
   </component>
   <component name="RunManager" selected="Spring Boot.MallApplication">
     <configuration name="mall" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -155,9 +204,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MallApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="demo01_mall" />
+    <configuration name="MallApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="mall" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wuyan.mall.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.wuyan.mall.MallApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -168,6 +224,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.MallApplication" />
         <item itemvalue="Application.mall" />
       </list>
     </recent_temporary>
@@ -183,39 +240,41 @@
       <option name="presentableId" value="Default" />
       <updated>1569812000245</updated>
       <workItem from="1569812005218" duration="6793000" />
+      <workItem from="1569829776108" duration="25377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6793000" />
+    <option name="totallyTimeSpent" value="32170000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="846" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Web" side_tool="true" />
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.50145346" side_tool="true" weight="0.24953617" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" internal_type="SLIDING" order="5" sideWeight="0.4985465" visible="true" weight="0.2855228" />
+      <window_info active="true" content_ui="combo" id="Project" internal_type="SLIDING" order="5" sideWeight="0.4985465" visible="true" weight="0.28971255" />
       <window_info id="Structure" order="6" sideWeight="0.50145346" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Database Changes" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32994187" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.51744187" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Bean Validation" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Run Dashboard" order="0" sideWeight="0.49924356" visible="true" weight="0.4262295" />
+      <window_info anchor="bottom" id="Version Control" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50075644" side_tool="true" weight="0.40163934" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.32994187" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.51744187" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="bottom" id="Spring" order="13" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.3295082" />
+      <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.3295082" />
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
@@ -225,36 +284,37 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="regions" language="JAVA" />
+        <watch expression="categories1" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>categories1</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>regions</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/MallApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/generatorConfig.xml" />
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/Generator.java" />
     <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/AddressMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -276,54 +336,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/LogicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="4" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/config/CorsConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/db.properties" />
     <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/vo/LoginVo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -366,10 +379,120 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/config/CorsConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/MallApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/RoleExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/RoleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/LogicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Region.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding>
+            <element signature="e#278#279#0" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+            <element signature="e#403#404#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/RegionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/mallBean/CategoryL1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding>
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#153#154#0" expanded="true" />
+            <element signature="e#192#193#0" expanded="true" />
+            <element signature="e#226#227#0" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#362#363#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/RegionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="74" column="14" lean-forward="true" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/RegionExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/java_soft/jdk_1.8/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/vo/BaseRespVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+        <state relative-caret-position="193">
+          <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
           <folding>
             <element signature="e#227#228#0" expanded="true" />
             <element signature="e#254#255#0" expanded="true" />
@@ -383,6 +506,169 @@
             <element signature="e#520#521#0" expanded="true" />
             <element signature="e#559#560#0" expanded="true" />
             <element signature="e#593#594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/CategoryMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-76">
+          <caret line="77" column="11" lean-forward="true" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/CategoryMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.9.RELEASE/spring-web-5.1.9.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="197" column="36" lean-forward="true" selection-start-line="197" selection-start-column="36" selection-end-line="197" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+            <element signature="e#987#988#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/Brand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.1.4/pagehelper-5.1.4.jar!/com/github/pagehelper/page/PageMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/com/wuyan/mall/mapper/BrandMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-304">
+          <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/vo/PageInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#175#176#0" expanded="true" />
+            <element signature="e#200#201#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/mapper/BrandMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/service/mallService/MallServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="63" column="27" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2523#2524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/util/MallUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/service/mallService/MallService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/bean/mallBean/MallBrand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+            <element signature="e#438#439#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo01_mall/src/main/java/com/wuyan/mall/controller/MallController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2253#2254#0" expanded="true" />
+            <element signature="e#2279#2280#0" expanded="true" />
           </folding>
         </state>
       </provider>

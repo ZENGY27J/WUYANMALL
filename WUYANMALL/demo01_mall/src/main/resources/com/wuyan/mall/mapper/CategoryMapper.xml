@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, keywords, desc, pid, icon_url, pic_url, level, sort_order, add_time, update_time, 
+    id, name, keywords, `desc`, pid, icon_url, pic_url, `level`, sort_order, add_time, update_time,
     deleted
   </sql>
   <select id="selectByExample" parameterType="com.wuyan.mall.bean.CategoryExample" resultMap="BaseResultMap">
@@ -96,6 +96,13 @@
     <include refid="Base_Column_List" />
     from cskaoyan_mall_category
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <resultMap id="ValueAndLabel" type="com.wuyan.mall.bean.Category">
+    <result column="id" property="value"/>
+    <result column="name" property="label"/>
+  </resultMap>
+  <select id="selectAll" parameterType="com.wuyan.mall.bean.Category" resultMap="ValueAndLabel">
+    select id,name from cskaoyan_mall_category where pid = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cskaoyan_mall_category

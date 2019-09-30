@@ -3,8 +3,10 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.Region;
 import com.wuyan.mall.bean.RegionExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface RegionMapper {
     long countByExample(RegionExample example);
 

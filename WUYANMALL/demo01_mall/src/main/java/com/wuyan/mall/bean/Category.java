@@ -1,6 +1,7 @@
 package com.wuyan.mall.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class Category {
     private Integer id;
@@ -26,6 +27,36 @@ public class Category {
     private Date updateTime;
 
     private Boolean deleted;
+
+    int value;
+
+    String label;
+
+    List<Category> children;
+
+    public List<Category> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Category> children) {
+        this.children = children;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 
     public Integer getId() {
         return id;
