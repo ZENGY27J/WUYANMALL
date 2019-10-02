@@ -1,12 +1,18 @@
 package com.wuyan.mall.bean.mallBean;
 
-import com.wuyan.mall.bean.Brand;
-
 import java.util.List;
 
-public class MallBrand {
+public class MallPage<T> {
     long total;
-    List<Brand> items;
+    List<T> items;
+
+    public MallPage() {
+    }
+
+    public MallPage(long total, List<T> items) {
+        this.total = total;
+        this.items = items;
+    }
 
     public long getTotal() {
         return total;
@@ -16,11 +22,11 @@ public class MallBrand {
         this.total = total;
     }
 
-    public List<Brand> getItems() {
+    public List<T> getItems() {
         return items;
     }
 
-    public void setItems(List<Brand> items) {
+    public void setItems(List<T> items) {
         this.items = items;
     }
 }

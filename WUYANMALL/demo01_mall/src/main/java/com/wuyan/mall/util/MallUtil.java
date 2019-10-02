@@ -1,8 +1,14 @@
 package com.wuyan.mall.util;
 
-import com.wuyan.mall.bean.BrandExample;
-import com.wuyan.mall.bean.CategoryExample;
-import com.wuyan.mall.bean.RegionExample;
+import com.github.pagehelper.PageHelper;
+import com.wuyan.mall.bean.*;
+import com.wuyan.mall.vo.PageInfo;
+
+import javax.xml.crypto.Data;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class MallUtil {
 
@@ -14,10 +20,11 @@ public class MallUtil {
 
     public static CategoryExample getCategory(Object id){
         CategoryExample categoryExample = new CategoryExample();
+        CategoryExample.Criteria criteria = categoryExample.createCriteria();
         if(id instanceof Integer) {
-            CategoryExample.Criteria criteria = categoryExample.createCriteria().andPidEqualTo((Integer)id);
+            criteria.andPidEqualTo((Integer)id);
         }else if(id instanceof String){
-            CategoryExample.Criteria criteria = categoryExample.createCriteria().andNameEqualTo((String)id);
+            criteria.andNameEqualTo((String)id);
         }
         return categoryExample;
     }
@@ -27,18 +34,121 @@ public class MallUtil {
         return categoryExample;
     }
 
-    public static BrandExample getBrandAll(int id,String name,Boolean flag){
+    /**
+     * 品牌管理
+     * @param id
+     * @param name
+     * @return
+     */
+    public static BrandExample getBrandAll(String id,String name){
         BrandExample brandExample = new BrandExample();
-        if(!flag){
-            BrandExample.Criteria criteria = brandExample.createCriteria();
-        }else if(name == null || name.length()==0) {
-            BrandExample.Criteria criteria = brandExample.createCriteria().andIdEqualTo(id);
-        }else{
-            BrandExample.Criteria criteria1 = brandExample.createCriteria().andNameLike("%" + name + "%");
-            BrandExample.Criteria criteria2 = brandExample.createCriteria().andIdEqualTo(id);
-            brandExample.or(criteria2);
+        BrandExample.Criteria criteria = brandExample.createCriteria();
+        if (!"".equals(id) && id != null){
+            criteria.andIdEqualTo(Integer.valueOf(id));
+        }
+        if (!"".equals(name) && name != null){
+            criteria.andNameLike("%" + name + "%");
         }
         return  brandExample;
     }
 
+    /**
+     * 关键词
+     * @return
+     */
+    public static KeywordExample getKeyword(String url,String keyword) {
+        KeywordExample keywordExample = new KeywordExample();
+        KeywordExample.Criteria criteria = keywordExample.createCriteria();
+        if(!"".equals(keyword) && keyword != null){
+            criteria.andKeywordLike("%" + keyword + "%");
+        }
+        if(!"".equals(url) && url != null){
+            criteria.andUrlLike("%" + url + "%");
+        }
+        return keywordExample;
+    }
+
+    public static KeywordExample getKeywordByKeyword(String keyword) {
+        KeywordExample keywordExample = new KeywordExample();
+        KeywordExample.Criteria criteria = keywordExample.createCriteria().andKeywordEqualTo(keyword);
+        return keywordExample;
+    }
+
+    public static KeywordExample getKeywordById(int id) {
+        KeywordExample keywordExample = new KeywordExample();
+        KeywordExample.Criteria criteria = keywordExample.createCriteria().andIdEqualTo(id);
+        return keywordExample;
+    }
+    /**
+     * 分页
+     * @param pageInfo
+     */
+    public static void pageHelper(PageInfo pageInfo){
+        PageHelper.startPage(pageInfo.getPage(),pageInfo.getLimit());
+        String order = pageInfo.getSort() + " " + pageInfo.getOrder();
+        PageHelper.orderBy(order);
+    }
+
+    public static Date getNowTime(){
+        Date time = null;
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            time = dateFormat.parse(dateFormat.format(new Date()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return time;
+    }
+
+    public static IssueExample getIssue(String question) {
+        IssueExample issueExample = new IssueExample();
+        IssueExample.Criteria criteria = issueExample.createCriteria();
+        if(!"".equals(question) && question == null){
+        }else{
+            criteria.andQuestionLike("%" + question + "%");
+        }
+        return issueExample;
+    }
+
+    public static IssueExample getIssueById(Integer id) {
+        IssueExample issueExample = new IssueExample();
+        IssueExample.Criteria criteria = issueExample.createCriteria().andIdEqualTo(id);
+        return issueExample;
+    }
+
+    public static OrderExample getOrder(PageInfo pageInfo) {
+        OrderExample orderExample = new OrderExample();
+        OrderExample.Criteria criteria = orderExample.createCriteria();
+        if(!"".equals(pageInfo.getUserId())&& pageInfo.getUserId() != null){
+            criteria.andUserIdEqualTo(Integer.valueOf(pageInfo.getUserId()));
+        }
+        if (!"".equals(pageInfo.getOrderSn()) && pageInfo.getOrderSn() != null){
+            criteria.andOrderSnEqualTo(pageInfo.getOrderSn());
+        }
+        List<Short> orderStatusArray = pageInfo.getOrderStatusArray();
+        if (orderStatusArray != null){
+            for (Short aShort : orderStatusArray) {
+                criteria.andOrderStatusEqualTo(aShort);
+            }
+        }
+        return orderExample;
+    }
+
+    public static UserExample getUser(Integer userId) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andIdEqualTo(userId);
+        return userExample;
+    }
+
+    public static OrderGoodsExample getOrderGoods(int id) {
+        OrderGoodsExample orderGoodsExample = new OrderGoodsExample();
+        orderGoodsExample.createCriteria().andOrderIdEqualTo(id);
+        return orderGoodsExample;
+    }
+
+    public static OrderExample getOrderById(int id) {
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andIdEqualTo(id);
+        return orderExample;
+    }
 }

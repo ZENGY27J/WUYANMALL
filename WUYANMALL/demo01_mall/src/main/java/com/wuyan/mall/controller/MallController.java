@@ -1,8 +1,7 @@
 package com.wuyan.mall.controller;
 
-import com.wuyan.mall.bean.Category;
-import com.wuyan.mall.bean.Region;
-import com.wuyan.mall.bean.mallBean.MallBrand;
+import com.wuyan.mall.bean.*;
+import com.wuyan.mall.bean.mallBean.MallPage;
 import com.wuyan.mall.service.mallService.MallService;
 import com.wuyan.mall.vo.BaseRespVo;
 import com.wuyan.mall.vo.PageInfo;
@@ -11,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商场管理相关模块
@@ -38,7 +39,7 @@ public class MallController {
      */
     @RequestMapping("admin/brand/list")
     public BaseRespVo brandList(PageInfo pageInfo){
-        MallBrand brands =mallService.getBrand(pageInfo);
+        MallPage brands =mallService.getBrand(pageInfo);
         return BaseRespVo.ok(brands);
     }
 
@@ -79,9 +80,112 @@ public class MallController {
         return BaseRespVo.ok(null);
     }
 
+    /**
+     * 获取订单相关信息
+     * @param pageInfo
+     * @return
+     */
+    @RequestMapping("admin/order/list")
+    public BaseRespVo orderList(PageInfo pageInfo){
+        MallPage orders = mallService.getOrder(pageInfo);
+        return BaseRespVo.ok(orders);
+    }
+
+    @RequestMapping("admin/order/detail")
+    public BaseRespVo orderDetail(int id){
+        Order order = mallService.getOrderById(id);
+        User user = mallService.getUserById(order.getUserId());
+        OrderGoods orderGoods = mallService.getOrderGoods(id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("order",order);
+        map.put("user",user);
+        map.put("orderGoods",orderGoods);
+        return BaseRespVo.ok(map);
+    }
+    /**
+     * 获取通用问题相关信息
+     * @param pageInfo
+     * @return
+     */
+    @RequestMapping("admin/issue/list")
+    public BaseRespVo issueList(PageInfo pageInfo){
+        MallPage mallPage = mallService.getIssue(pageInfo);
+        return BaseRespVo.ok(mallPage);
+    }
+
+    /**
+     * 添加通用问题
+     * @param issue
+     * @return
+     */
+    @RequestMapping("admin/issue/create")
+    public BaseRespVo addIssue(@RequestBody Issue issue){
+        Issue issue1 = mallService.addIssue(issue);
+        return BaseRespVo.ok(issue1);
+    }
+
+    /**
+     * 修改通用问题信息
+     * @param issue
+     * @return
+     */
+    @RequestMapping("admin/issue/update")
+    public BaseRespVo updateIssue(@RequestBody Issue issue){
+        Issue issue1 = mallService.updateIssue(issue);
+        return BaseRespVo.ok(issue1);
+    }
+    /**
+     * 删除指定的通用问题
+     * @param issue
+     * @return
+     */
+    @RequestMapping("admin/issue/delete")
+    public BaseRespVo deleteIssue(@RequestBody Issue issue){
+        mallService.deleteIssue(issue);
+        return BaseRespVo.ok(null);
+    }
+    /**
+     * 显示所有关键词信息
+     * @param pageInfo
+     * @return
+     */
     @RequestMapping("admin/keyword/list")
     public BaseRespVo keywordList(PageInfo pageInfo){
-        return null;
+        MallPage mallKeyword = mallService.getKeyword(pageInfo);
+        return BaseRespVo.ok(mallKeyword);
+    }
+
+    /**
+     * 添加关键词
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("admin/keyword/create")
+    public BaseRespVo addKeyword(@RequestBody Keyword keyword){
+        Keyword keyword1 = mallService.addKeyword(keyword);
+        return BaseRespVo.ok(keyword1);
+    }
+
+    /**
+     * 更新关键词信息
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("admin/keyword/update")
+    public BaseRespVo updateKeyword(@RequestBody Keyword keyword){
+       Keyword keyword1 = mallService.updateKeyword(keyword);
+        return BaseRespVo.ok(keyword1);
+    }
+
+    /**
+     * 删除指定关键词
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("admin/keyword/delete")
+    public BaseRespVo deleteKeyword(@RequestBody Keyword keyword){
+        mallService.deleteKeyword(keyword);
+        return BaseRespVo.ok(null);
     }
 }
 

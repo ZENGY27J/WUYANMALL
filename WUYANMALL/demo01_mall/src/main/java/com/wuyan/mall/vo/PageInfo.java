@@ -1,4 +1,7 @@
 package com.wuyan.mall.vo;
+
+import java.util.List;
+
 /**
  * @Program: WUYANMALL
  * @Author: ZyEthan
@@ -30,6 +33,46 @@ public class PageInfo {
     String keyword;
 
     String id;
+
+    String url;
+
+    String question;
+
+    List<Short> orderStatusArray;
+
+    String orderSn;
+
+    public List<Short> getOrderStatusArray() {
+        return orderStatusArray;
+    }
+
+    public void setOrderStatusArray(List<Short> orderStatusArray) {
+        this.orderStatusArray = orderStatusArray;
+    }
+
+    public String getOrderSn() {
+        return orderSn;
+    }
+
+    public void setOrderSn(String orderSn) {
+        this.orderSn = orderSn;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getId() {
         return id;

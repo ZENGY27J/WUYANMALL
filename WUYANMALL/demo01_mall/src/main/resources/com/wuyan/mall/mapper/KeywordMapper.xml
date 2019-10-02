@@ -104,13 +104,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wuyan.mall.bean.Keyword">
-    insert into cskaoyan_mall_keyword (id, keyword, url, 
-      is_hot, is_default, sort_order, 
-      add_time, update_time, deleted
+    insert into cskaoyan_mall_keyword (keyword, url,
+      is_hot, is_default,
+      add_time, update_time
       )
-    values (#{id,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{isHot,jdbcType=BIT}, #{isDefault,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, 
-      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
+    values (#{keyword,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+      #{isHot,jdbcType=BIT}, #{isDefault,jdbcType=BIT},
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wuyan.mall.bean.Keyword">
@@ -272,4 +272,5 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>
