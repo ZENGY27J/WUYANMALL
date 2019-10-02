@@ -29,6 +29,16 @@ public class PageInfo {
     // 商品关键字
     String keyword;
 
+    String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getKeyword() {
         return keyword;
     }
