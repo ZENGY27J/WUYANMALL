@@ -2,14 +2,20 @@ package com.wuyan.mall.service.goodsService;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wuyan.mall.bean.Goods;
-import com.wuyan.mall.bean.GoodsExample;
+import com.wuyan.mall.bean.*;
+import com.wuyan.mall.bean.Accept.CreateGoods;
+import com.wuyan.mall.mapper.GoodsAttributeMapper;
 import com.wuyan.mall.mapper.GoodsMapper;
+import com.wuyan.mall.mapper.GoodsProductMapper;
+import com.wuyan.mall.mapper.GoodsSpecificationMapper;
 import com.wuyan.mall.vo.BaseRespVo;
 import com.wuyan.mall.vo.ListGoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Service;
 
+import java.sql.DatabaseMetaData;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -103,5 +109,47 @@ public class GoodsServiceImpl implements GoodsService {
         baseRespVo.setErrmsg("成功");
 
         return baseRespVo;
+    }
+
+    @Autowired
+    GoodsSpecificationMapper specificationMapper;
+    @Autowired
+    GoodsProductMapper productMapper;
+    @Autowired
+    GoodsProductMapper productMapper;
+    @Autowired
+    GoodsAttributeMapper attributeMapper;
+    @Override
+    public void createGoods(CreateGoods createGoods) {
+        //goods
+        Date date = new Date();
+        createGoods.getGoods().setAddTime(date);
+        createGoods.getGoods().setUpdateTime(date);
+        int goods_id=goodsMapper.insert(createGoods.getGoods());
+
+        //specification
+        for (GoodsSpecification goodsSpecification:createGoods.getSpecifications()) {
+            goodsSpecification.setAddTime(date);
+            goodsSpecification.setUpdateTime(date);
+            goodsSpecification.setGoodsId(goods_id);
+            specificationMapper.insert(goodsSpecification);
+        }
+
+        //product
+        for (GoodsProduct goodsProduct: createGoods.getProducts()) {
+            goodsProduct.setAddTime(date);
+            goodsProduct.setUpdateTime(date);
+            goodsProduct.setGoodsId(goods_id);
+            productMapper.insert(goodsProduct);
+        }
+
+        //attributes
+        for (GoodsAttribute attribute :createGoods.getAttributes()) {
+            attribute.setAddTime(date);
+            attribute.setUpdateTime(date);
+            attribute.setGoodsId(goods_id);
+            attributeMapper.insert(attribute);
+        }
+
     }
 }

@@ -20,19 +20,14 @@ import java.util.UUID;
 
 @Service
 public class StorageServiceImpl implements  StorageService{
-
-/*@Value("${localhost}")
-    String url;//http://192.168.3.79*/
-
     //图片存放根路径
     @Value("${file.rootPath}")
     private String ROOT_PATH;
     //图片存放根目录下的子目录
     @Value("${file.sonPath}")
     private String SON_PATH;
-
-    @Value("${server.port}")
     //获取主机端口
+    @Value("${server.port}")
     private String POST;
 
     @Autowired
