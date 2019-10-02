@@ -12,6 +12,12 @@ public interface MallService {
 
     MallPage getBrand(PageInfo pageInfo);
 
+    Brand addBrand(Brand brand);
+
+    Brand updateBrand(Brand brand);
+
+    void deleteBrand(Brand brand);
+
     List<Category> getCategory();
 
     List<Category> getCategoryList();
@@ -20,15 +26,15 @@ public interface MallService {
 
     void deleteCategory(Category category);
 
-    MallPage getKeyword(PageInfo pageInfo);
-
-    Keyword addKeyword(@Param("keyword") Keyword keyword);
-
-    void deleteKeyword(Keyword keyword);
-
-    Keyword updateKeyword(Keyword keyword);
+    void updateCategory(Category category);
 
     MallPage getOrder(PageInfo pageInfo);
+
+    Order getOrderById(int id);
+
+    User getUserById(Integer userId);
+
+    OrderGoods getOrderGoods(int id);
 
     MallPage getIssue(PageInfo pageInfo);
 
@@ -38,9 +44,11 @@ public interface MallService {
 
     Issue updateIssue(Issue issue);
 
-    Order getOrderById(int id);
+    MallPage getKeyword(PageInfo pageInfo);
 
-    User getUserById(Integer userId);
+    Keyword addKeyword(@Param("keyword") Keyword keyword);
 
-    OrderGoods getOrderGoods(int id);
+    void deleteKeyword(Keyword keyword);
+
+    Keyword updateKeyword(Keyword keyword);
 }

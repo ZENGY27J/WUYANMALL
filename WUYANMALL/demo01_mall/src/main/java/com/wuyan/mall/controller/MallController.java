@@ -33,7 +33,7 @@ public class MallController {
     }
 
     /**
-     * 分页显示品牌制造商
+     * 显示品牌制造商
      * @param pageInfo
      * @return
      */
@@ -43,6 +43,38 @@ public class MallController {
         return BaseRespVo.ok(brands);
     }
 
+    /**
+     * 增加品牌制造商
+     * @param brand
+     * @return
+     */
+    @RequestMapping("admin/brand/create")
+    public BaseRespVo addBrand(@RequestBody Brand brand){
+        Brand brand1 = mallService.addBrand(brand);
+        return BaseRespVo.ok(brand1);
+    }
+
+    /**
+     * 修改品牌商信息
+     * @param brand
+     * @return
+     */
+    @RequestMapping("admin/brand/update")
+    public BaseRespVo updateBrand(@RequestBody Brand brand){
+        Brand brand1 = mallService.updateBrand(brand);
+        return BaseRespVo.ok(brand1);
+    }
+
+    /**
+     * 删除指定品牌商
+     * @param brand
+     * @return
+     */
+    @RequestMapping("admin/brand/delete")
+    public BaseRespVo deleteBrand(@RequestBody Brand brand){
+        mallService.deleteBrand(brand);
+        return BaseRespVo.ok(null);
+    }
     /**
      * 展示一级商品商品类目
      * @return
@@ -63,10 +95,26 @@ public class MallController {
         return BaseRespVo.ok(categories);
     }
 
+    /**
+     * 增加商品类目
+     * @param category
+     * @return
+     */
     @RequestMapping("admin/category/create")
     public BaseRespVo categoryCreate(Category category){
         Category category1 = mallService.addCategory(category);
         return BaseRespVo.ok(category1);
+    }
+
+    /**
+     * 更新商品类目信息
+     * @param category
+     * @return
+     */
+    @RequestMapping("admin/category/update")
+    public BaseRespVo updateCategory(@RequestBody Category category){
+        mallService.updateCategory(category);
+        return BaseRespVo.ok(null);
     }
 
     /**
@@ -91,6 +139,11 @@ public class MallController {
         return BaseRespVo.ok(orders);
     }
 
+    /**
+     * 显示订单详情
+     * @param id
+     * @return
+     */
     @RequestMapping("admin/order/detail")
     public BaseRespVo orderDetail(int id){
         Order order = mallService.getOrderById(id);

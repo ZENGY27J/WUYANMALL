@@ -258,13 +258,13 @@
   <update id="updateByExample" parameterType="map">
     update cskaoyan_mall_category
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      desc = #{record.desc,jdbcType=VARCHAR},
+      `desc` = #{record.desc,jdbcType=VARCHAR},
       pid = #{record.pid,jdbcType=INTEGER},
       icon_url = #{record.iconUrl,jdbcType=VARCHAR},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
-      level = #{record.level,jdbcType=VARCHAR},
+      `level` = #{record.level,jdbcType=VARCHAR},
       sort_order = #{record.sortOrder,jdbcType=TINYINT},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},

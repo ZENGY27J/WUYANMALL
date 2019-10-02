@@ -55,6 +55,27 @@ public class MallServiceImpl implements MallService {
     }
 
     @Override
+    public Brand addBrand(Brand brand) {
+        brand.setAddTime(MallUtil.getNowTime());
+        brand.setUpdateTime(MallUtil.getNowTime());
+        brandMapper.insert(brand);
+        List<Brand> brands = brandMapper.selectByExample(MallUtil.getBrandByName(brand.getName()));
+        return brands.get(0);
+    }
+
+    @Override
+    public Brand updateBrand(Brand brand) {
+        brand.setUpdateTime(MallUtil.getNowTime());
+        brandMapper.updateByExample(brand,MallUtil.getBrandByName(brand.getName()));
+        return brand;
+    }
+
+    @Override
+    public void deleteBrand(Brand brand) {
+        brandMapper.deleteByExample(MallUtil.getBrandByName(brand.getName()));
+    }
+
+    @Override
     public List<Category> getCategory() {
         return categoryMapper.selectAll(0);
     }
@@ -71,6 +92,8 @@ public class MallServiceImpl implements MallService {
 
     @Override
     public Category addCategory(Category category) {
+        category.setAddTime(MallUtil.getNowTime());
+        category.setUpdateTime(MallUtil.getNowTime());
         categoryMapper.insert(category);
         return (Category) categoryMapper.selectByExample(MallUtil.getCategory(category.getName()));
     }
@@ -81,34 +104,9 @@ public class MallServiceImpl implements MallService {
     }
 
     @Override
-    public MallPage getKeyword(PageInfo pageInfo) {
-        MallUtil.pageHelper(pageInfo);
-        String url = pageInfo.getUrl();
-        String keyword = pageInfo.getKeyword();
-        List<Keyword> keywords = keywordMapper.selectByExample(MallUtil.getKeyword(url,keyword));
-        long l = keywordMapper.countByExample(MallUtil.getKeyword(url,keyword));
-        return new MallPage(l,keywords);
-    }
-
-    @Override
-    public Keyword addKeyword(Keyword keyword) {
-        keyword.setAddTime(MallUtil.getNowTime());
-        keyword.setUpdateTime(MallUtil.getNowTime());
-        keywordMapper.insert(keyword);
-        List<Keyword> keywords = keywordMapper.selectByExample(MallUtil.getKeywordByKeyword(keyword.getKeyword()));
-        return keywords.get(0);
-    }
-
-    @Override
-    public void deleteKeyword(Keyword keyword) {
-        keywordMapper.deleteByExample(MallUtil.getKeywordByKeyword(keyword.getKeyword()));
-    }
-
-    @Override
-    public Keyword updateKeyword(Keyword keyword) {
-        keyword.setUpdateTime(MallUtil.getNowTime());
-        keywordMapper.updateByExample(keyword,MallUtil.getKeywordById(keyword.getId()));
-        return keyword;
+    public void updateCategory(Category category) {
+        category.setUpdateTime(MallUtil.getNowTime());
+        categoryMapper.updateByExample(category,MallUtil.getCategoryById(category.getId()));
     }
 
     @Override
@@ -117,6 +115,24 @@ public class MallServiceImpl implements MallService {
         List<Order> orders = orderMapper.selectByExample(MallUtil.getOrder(pageInfo));
         long l = orderMapper.countByExample(MallUtil.getOrder(pageInfo));
         return new MallPage(l,orders);
+    }
+
+    @Override
+    public Order getOrderById(int id) {
+        List<Order> orders = orderMapper.selectByExample(MallUtil.getOrderById(id));
+        return orders.get(0);
+    }
+
+    @Override
+    public User getUserById(Integer userId) {
+        List<User> users = userMapper.selectByExample(MallUtil.getUser(userId));
+        return users.get(0);
+    }
+
+    @Override
+    public OrderGoods getOrderGoods(int id) {
+        List<OrderGoods> orderGoods = orderGoodsMapper.selectByExample(MallUtil.getOrderGoods(id));
+        return orderGoods.get(0);
     }
 
     @Override
@@ -149,20 +165,33 @@ public class MallServiceImpl implements MallService {
     }
 
     @Override
-    public Order getOrderById(int id) {
-        List<Order> orders = orderMapper.selectByExample(MallUtil.getOrderById(id));
-        return orders.get(0);
+    public MallPage getKeyword(PageInfo pageInfo) {
+        MallUtil.pageHelper(pageInfo);
+        String url = pageInfo.getUrl();
+        String keyword = pageInfo.getKeyword();
+        List<Keyword> keywords = keywordMapper.selectByExample(MallUtil.getKeyword(url,keyword));
+        long l = keywordMapper.countByExample(MallUtil.getKeyword(url,keyword));
+        return new MallPage(l,keywords);
     }
 
     @Override
-    public User getUserById(Integer userId) {
-        List<User> users = userMapper.selectByExample(MallUtil.getUser(userId));
-        return users.get(0);
+    public Keyword addKeyword(Keyword keyword) {
+        keyword.setAddTime(MallUtil.getNowTime());
+        keyword.setUpdateTime(MallUtil.getNowTime());
+        keywordMapper.insert(keyword);
+        List<Keyword> keywords = keywordMapper.selectByExample(MallUtil.getKeywordByKeyword(keyword.getKeyword()));
+        return keywords.get(0);
     }
 
     @Override
-    public OrderGoods getOrderGoods(int id) {
-        List<OrderGoods> orderGoods = orderGoodsMapper.selectByExample(MallUtil.getOrderGoods(id));
-        return orderGoods.get(0);
+    public void deleteKeyword(Keyword keyword) {
+        keywordMapper.deleteByExample(MallUtil.getKeywordByKeyword(keyword.getKeyword()));
+    }
+
+    @Override
+    public Keyword updateKeyword(Keyword keyword) {
+        keyword.setUpdateTime(MallUtil.getNowTime());
+        keywordMapper.updateByExample(keyword,MallUtil.getKeywordById(keyword.getId()));
+        return keyword;
     }
 }
