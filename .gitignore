@@ -4,7 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 
-application-db.yml
+/application-db.yml
 
 ### STS ###
 .apt_generated
@@ -16,7 +16,7 @@ application-db.yml
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
