@@ -1,15 +1,13 @@
-package com.wuyan.mall.mapper;
+package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Log;
 import com.wuyan.mall.bean.LogExample;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
-
-@Mapper
-public interface LogMapper {
+public interface LogService {
     long countByExample(LogExample example);
 
     int deleteByExample(LogExample example);
@@ -20,7 +18,7 @@ public interface LogMapper {
 
     int insertSelective(Log record);
 
-    List<Log> selectByExample(LogExample example);
+    List<Log> selectByExample(String name);
 
     Log selectByPrimaryKey(Integer id);
 
