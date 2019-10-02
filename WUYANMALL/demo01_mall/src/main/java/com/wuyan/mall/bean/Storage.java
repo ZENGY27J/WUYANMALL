@@ -1,7 +1,10 @@
 package com.wuyan.mall.bean;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class Storage {
     private Integer id;
 

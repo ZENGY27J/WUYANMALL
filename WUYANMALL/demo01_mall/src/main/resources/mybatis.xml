@@ -9,6 +9,7 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="cacheEnabled" value="true"/>
     </settings>
+
 <!--    别名-->
     <typeAliases>
     <!--<typeAlias type="com.zyethan.bean.User" alias="userz"/>-->

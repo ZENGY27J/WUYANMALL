@@ -1,11 +1,14 @@
 package com.wuyan.mall.vo;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @Program: WUYANMALL
  * @Author: ZyEthan
  * @Description: 基本返回
  * @Date: 2019-09-30-12:10
  */
+@Component
 public class BaseRespVo<T> {
     T data;
     String errmsg;

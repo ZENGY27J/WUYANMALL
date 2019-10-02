@@ -213,4 +213,5 @@ public class Goods {
     public void setDetail(String detail) {
         this.detail = detail == null ? null : detail.trim();
     }
+
 }

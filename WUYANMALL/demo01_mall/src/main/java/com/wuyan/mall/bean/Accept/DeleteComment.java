@@ -1,10 +1,9 @@
-package com.wuyan.mall.bean;
+package com.wuyan.mall.bean.Accept;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+import java.util.Arrays;
 import java.util.Date;
 
-public class Comment {
+public class DeleteComment {
     private Integer id;
 
     private Integer valueId;
@@ -15,17 +14,18 @@ public class Comment {
 
     private Integer userId;
 
-    private Boolean hasPicture;
+    private String  hasPicture;
 
     private String[] picUrls;
 
     private Short star;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date addTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
 
-    private Boolean deleted;
+    private String addTime;
+
+    private String updateTime;
+
+    private String deleted;
+
 
     public Integer getId() {
         return id;
@@ -67,11 +67,11 @@ public class Comment {
         this.userId = userId;
     }
 
-    public Boolean getHasPicture() {
+    public String getHasPicture() {
         return hasPicture;
     }
 
-    public void setHasPicture(Boolean hasPicture) {
+    public void setHasPicture(String hasPicture) {
         this.hasPicture = hasPicture;
     }
 
@@ -91,27 +91,44 @@ public class Comment {
         this.star = star;
     }
 
-    public Date getAddTime() {
+    public String getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Date addTime) {
+    public void setAddTime(String addTime) {
         this.addTime = addTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
-    public Boolean getDeleted() {
+    public String getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(String deleted) {
         this.deleted = deleted;
+    }
+
+    @Override
+    public String toString() {
+        return "DeleteComment{" +
+                "id=" + id +
+                ", valueId=" + valueId +
+                ", type=" + type +
+                ", content='" + content + '\'' +
+                ", userId=" + userId +
+                ", hasPicture='" + hasPicture + '\'' +
+                ", picUrls=" + Arrays.toString(picUrls) +
+                ", star=" + star +
+                ", addTime=" + addTime +
+                ", updateTime=" + updateTime +
+                ", deleted='" + deleted + '\'' +
+                '}';
     }
 }
