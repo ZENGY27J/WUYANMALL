@@ -5,7 +5,10 @@ import com.wuyan.mall.vo.LoginVo;
 import com.wuyan.mall.vo.UserInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> zydevone
 import java.util.ArrayList;
 
 /**
