@@ -1,17 +1,15 @@
-package com.wuyan.mall.bean.Accept;
+package com.wuyan.mall.vo;
 
 import com.wuyan.mall.bean.Goods;
 import com.wuyan.mall.bean.GoodsAttribute;
 import com.wuyan.mall.bean.GoodsProduct;
 import com.wuyan.mall.bean.GoodsSpecification;
+
 import java.util.List;
 
-
-public class CreateGoods {
+public class SingleGoodsVo {
     Goods goods;
-   /* GoodsSpecification[] specifications;
-    GoodsProduct[] products;
-    GoodsAttribute[] attributes;*/
+    int[] categoryIds;
     List<GoodsSpecification> specifications;
     List<GoodsProduct> products;
     List<GoodsAttribute> attributes;
@@ -22,6 +20,14 @@ public class CreateGoods {
 
     public void setGoods(Goods goods) {
         this.goods = goods;
+    }
+
+    public int[] getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(int[] categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public List<GoodsSpecification> getSpecifications() {

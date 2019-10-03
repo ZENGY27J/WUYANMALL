@@ -2,6 +2,7 @@ package com.wuyan.mall.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private Integer id;

@@ -18,16 +18,31 @@ public class CommentController {
 
     @Autowired
     BaseRespVo baseRespVo;
+
+    /*
+    * 评论列表和查询评论，这里的查询是精确查询
+    * */
     @RequestMapping(value = "list")
     public BaseRespVo listComment(AcceptComment acceptComment){
-
-        if (acceptComment.getValueId()==0 && acceptComment.getUserId()==0) {
+        if (("".equals(acceptComment.getValueId()) || acceptComment.getValueId()==null ) && ("".equals(acceptComment.getUserId()) || acceptComment.getUserId()==null)) {
             baseRespVo = commentService.listAllComment(acceptComment.getPage(),acceptComment.getLimit());
         }else {
-            baseRespVo = commentService.listCommentByValueIdAndUserId(acceptComment.getPage(), acceptComment.getLimit(), acceptComment.getValueId(), acceptComment.getUserId());
+            int userId=0;
+            int valueId=0;
+            if (!"".equals(acceptComment.getUserId()) && acceptComment.getUserId()!=null ) {
+                userId = Integer.parseInt(acceptComment.getUserId());
+            }
+            if (!"".equals(acceptComment.getValueId()) && acceptComment.getValueId()!=null ){
+                valueId = Integer.parseInt(acceptComment.getValueId());
+            }
+            baseRespVo = commentService.listCommentByValueIdAndUserId(acceptComment.getPage(), acceptComment.getLimit(), valueId, userId);
         }
         return baseRespVo;
     }
+
+    /*
+    * 删除评论
+    * */
     @RequestMapping("delete")
     public BaseRespVo deleteComment(@RequestBody DeleteComment deleteComment){
        BaseRespVo baseRespVo= commentService.deleteComment(deleteComment);

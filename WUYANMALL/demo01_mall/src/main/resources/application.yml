@@ -1,12 +1,19 @@
 server:
   port: 80
 
+
 pagehelper:
   helper-dialect: mysql
+
+
+#文件上传地址
+file.rootPath: E:/img/
 
 spring:
   profiles:
     active: db
+  resources:
+    static-locations: file:${file.rootPath}
 
 
 logging:
@@ -17,11 +24,9 @@ logging:
           mapper: debug
 
 
-
-
 mybatis:
   type-handlers-package: com.wuyan.mall.mabatis
 
-#文件上传地址
-#file.rootPath: E
-#file.sonPath: /img/
+
+
+

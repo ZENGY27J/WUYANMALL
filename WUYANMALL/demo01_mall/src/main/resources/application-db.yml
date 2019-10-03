@@ -9,5 +9,5 @@ spring:
 
 
 #文件上传地址
-file.rootPath: E
-file.sonPath: /img/
+#file.rootPath: E
+#file.sonPath: /img/

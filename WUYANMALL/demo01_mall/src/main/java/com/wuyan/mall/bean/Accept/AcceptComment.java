@@ -3,8 +3,8 @@ package com.wuyan.mall.bean.Accept;
 public class AcceptComment {
     int page;
     int limit;
-    int valueId;
-    int userId;
+    String valueId;
+    String userId;
 
     public int getPage() {
         return page;
@@ -22,19 +22,19 @@ public class AcceptComment {
         this.limit = limit;
     }
 
-    public int getValueId() {
+    public String getValueId() {
         return valueId;
     }
 
-    public void setValueId(int valueId) {
+    public void setValueId(String valueId) {
         this.valueId = valueId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

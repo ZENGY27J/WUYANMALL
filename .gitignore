@@ -4,6 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+<<<<<<< HEAD
 /application-db.yml
 
 ### STS ###
@@ -30,5 +31,30 @@ target/
 /.nb-gradle/
 build/
 
+=======
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+>>>>>>> f5c06c6c367d21f5497010461106f06194984749
 ### VS Code ###
 .vscode/

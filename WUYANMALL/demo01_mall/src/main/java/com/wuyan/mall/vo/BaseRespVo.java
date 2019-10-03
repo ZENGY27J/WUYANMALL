@@ -37,6 +37,7 @@ public class BaseRespVo<T> {
     public void setErrno(int errno) {
         this.errno = errno;
     }
+
     public static BaseRespVo ok(Object data) {
         BaseRespVo baseRespVo = new BaseRespVo();
         baseRespVo.setData(data);

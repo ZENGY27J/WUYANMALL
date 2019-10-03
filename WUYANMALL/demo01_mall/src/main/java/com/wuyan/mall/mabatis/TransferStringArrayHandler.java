@@ -48,6 +48,9 @@ public class TransferStringArrayHandler implements TypeHandler<String[]> {
     }
     private String[] parseString2StringArray(String value) {
         String[] strings=new String[0];
+        if (value == null){
+            return strings;
+        }
         try {
             strings = objectMapper.readValue(value, String[].class);
         } catch (IOException e) {

@@ -20,12 +20,14 @@ import java.util.UUID;
 
 @Service
 public class StorageServiceImpl implements  StorageService{
+    //file.rootPath: E:/img/
+
     //图片存放根路径
     @Value("${file.rootPath}")
     private String ROOT_PATH;
-    //图片存放根目录下的子目录
+  /*  //图片存放根目录下的子目录
     @Value("${file.sonPath}")
-    private String SON_PATH;
+    private String SON_PATH;*/
     //获取主机端口
     @Value("${server.port}")
     private String POST;
@@ -46,7 +48,8 @@ public class StorageServiceImpl implements  StorageService{
         String prefix=suffix.substring(suffix.lastIndexOf(".")+1);
 
         //设置文件上传后的路径
-        String filePath=ROOT_PATH+":"+SON_PATH;
+        //String filePath=ROOT_PATH+":"+SON_PATH;
+        String filePath=ROOT_PATH;
         //防止文件名被冲突
         String uuid= UUID.randomUUID().toString();
         String fileName=uuid+"."+prefix;
@@ -65,7 +68,8 @@ public class StorageServiceImpl implements  StorageService{
             e.printStackTrace();
         }
         //保存file相关信息到指定数据库
-        String filePathNew=SON_PATH+fileName;
+        //String filePathNew=SON_PATH+fileName;
+        String filePathNew="/"+fileName;
         BaseRespVo baseRespVo=uploadGoodsPicture(dest,filePathNew);
 
         return baseRespVo;
