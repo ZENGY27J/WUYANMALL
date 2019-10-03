@@ -1,13 +1,10 @@
 package com.wuyan.mall.controller;
 
-import com.wuyan.mall.bean.User;
 import com.wuyan.mall.vo.BaseRespVo;
 import com.wuyan.mall.vo.LoginVo;
 import com.wuyan.mall.vo.UserInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.tracing.dtrace.DTraceProviderFactory;
-
 import java.util.ArrayList;
 
 /**
