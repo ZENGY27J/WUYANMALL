@@ -1,16 +1,6 @@
 package com.wuyan.mall.controller;
 
 import com.wuyan.mall.bean.Collect;
-<<<<<<< HEAD
-import com.wuyan.mall.bean.Footprint;
-import com.wuyan.mall.bean.SearchHistory;
-import com.wuyan.mall.bean.UserMagerBean.AddressPage;
-import com.wuyan.mall.bean.UserMagerBean.BaseData;
-import com.wuyan.mall.bean.UserMagerBean.UserPage;
-import com.wuyan.mall.service.user.UserService;
-import com.wuyan.mall.vo.BaseRespVo;
-import com.wuyan.mall.vo.PageInfo;
-=======
 import com.wuyan.mall.bean.Feedback;
 import com.wuyan.mall.bean.Footprint;
 import com.wuyan.mall.bean.SearchHistory;
@@ -20,7 +10,6 @@ import com.wuyan.mall.bean.UserMagerBean.UserPage;
 import com.wuyan.mall.service.user.UserService;
 import com.wuyan.mall.vo.BaseRespVo;
 import com.wuyan.mall.vo.UserPageInfo;
->>>>>>> zydevone
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,11 +32,7 @@ public class UserManagerController {
      * @return
      */
     @RequestMapping("/user/list")
-<<<<<<< HEAD
-    public BaseRespVo userList(PageInfo pageInfo) {
-=======
     public BaseRespVo userList(UserPageInfo pageInfo) {
->>>>>>> zydevone
         UserPage userPage = userService.getUserPage(pageInfo);
         BaseRespVo ok = BaseRespVo.ok(userPage);
         return ok;
@@ -59,31 +44,6 @@ public class UserManagerController {
      * @return
      */
     @RequestMapping("/address/list")
-<<<<<<< HEAD
-    public BaseRespVo addressList(PageInfo pageInfo) {
-        AddressPage addressPage = userService.getAddressPage(pageInfo);
-        BaseRespVo ok = BaseRespVo.ok(addressPage);
-        return ok;
-    }
-    @RequestMapping("/collect/list")
-    public BaseRespVo userCollect(PageInfo pageInfo) {
-        BaseData<Collect> userCollect = userService.getUserCollect(pageInfo);
-        BaseRespVo ok = BaseRespVo.ok(userCollect);
-        return ok;
-    }
-    @RequestMapping("/footprint/list")
-    public BaseRespVo userFootprint(PageInfo pageInfo) {
-        BaseData<Footprint> footprint = userService.getFootprint(pageInfo);
-        BaseRespVo ok = BaseRespVo.ok(footprint);
-        return ok;
-    }
-    @RequestMapping("/history/list")
-    public BaseRespVo searchHistory(PageInfo pageInfo) {
-        BaseData<SearchHistory> serviceHistory = userService.getHistory(pageInfo);
-        BaseRespVo ok = BaseRespVo.ok(serviceHistory);
-        return ok;
-    }
-=======
     public BaseRespVo addressList(UserPageInfo pageInfo) {
         AddressPage addressPage = userService.getAddressPage(pageInfo);
         if (addressPage == null) {
@@ -152,5 +112,4 @@ public class UserManagerController {
         BaseRespVo ok = BaseRespVo.ok(feedback);
         return ok;
     }
->>>>>>> zydevone
 }
