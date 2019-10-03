@@ -100,6 +100,10 @@ public class MallServiceImpl implements MallService {
 
     @Override
     public void deleteCategory(Category category) {
+        List<Category> children = category.getChildren();
+        for (Category child : children) {
+            categoryMapper.deleteByExample(MallUtil.getCategoryById(child.getId()));
+        }
         categoryMapper.deleteByExample(MallUtil.getCategoryById(category.getId()));
     }
 
