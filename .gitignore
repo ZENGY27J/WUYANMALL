@@ -3,7 +3,10 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+<<<<<<< HEAD
 /application-db.yml
+=======
+>>>>>>> wwq
 
 ### STS ###
 .apt_generated
@@ -15,6 +18,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+<<<<<<< HEAD
 
 .idea/
 
@@ -30,3 +34,21 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
+=======
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+>>>>>>> wwq

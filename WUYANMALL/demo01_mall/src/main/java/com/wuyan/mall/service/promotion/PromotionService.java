@@ -1,9 +1,6 @@
 package com.wuyan.mall.service.promotion;
 
-import com.wuyan.mall.bean.Advertisement;
-import com.wuyan.mall.bean.BaseData;
-import com.wuyan.mall.bean.Coupon;
-import com.wuyan.mall.bean.CouponUser;
+import com.wuyan.mall.bean.*;
 import com.wuyan.mall.vo.PromotionPageInfo;
 
 /**
@@ -31,4 +28,23 @@ public interface PromotionService {
     Advertisement createAdvertisement(Advertisement advertisement);
 
     Advertisement updateAdvertisement(Advertisement advertisement);
+
+    BaseData<Topic> getTopicList(PromotionPageInfo promotionPageInfo);
+
+    void deleteTopicByID(Integer id);
+
+    int updateTopicById(Topic topic);
+
+    BaseData<GrouponRules> getGroupRulesList(PromotionPageInfo promotionPageInfo);
+
+    void deleteGroupRules(Integer id);
+
+    int updateGroupRules(GrouponRules grouponRules);
+
+    Goods findById(Integer goodsId);
+
+    int createGroupRules(GrouponRules grouponRules);
+
+    void creatTopic(Topic topic);
+
 }

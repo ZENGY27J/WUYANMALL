@@ -42,7 +42,7 @@ public class TransferStringArreyHander implements TypeHandler<String[]>{
         private String[] parseString2StringArray(String value) {
 
             String[] strings = new String[0];
-            if (value == null){
+            if (value == null && "".equals(value)){
                 return strings;
             }
             try {
