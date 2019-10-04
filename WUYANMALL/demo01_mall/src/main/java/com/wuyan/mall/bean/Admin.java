@@ -1,5 +1,7 @@
 package com.wuyan.mall.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Admin {
@@ -11,17 +13,20 @@ public class Admin {
 
     private String lastLoginIp;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
 
     private String avatar;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     private Boolean deleted;
 
-    private String roleIds;
+    private Integer[] roleIds;
 
     public Integer getId() {
         return id;
@@ -36,7 +41,7 @@ public class Admin {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getPassword() {
@@ -44,7 +49,7 @@ public class Admin {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getLastLoginIp() {
@@ -52,7 +57,7 @@ public class Admin {
     }
 
     public void setLastLoginIp(String lastLoginIp) {
-        this.lastLoginIp = lastLoginIp == null ? null : lastLoginIp.trim();
+        this.lastLoginIp = lastLoginIp;
     }
 
     public Date getLastLoginTime() {
@@ -68,7 +73,7 @@ public class Admin {
     }
 
     public void setAvatar(String avatar) {
-        this.avatar = avatar == null ? null : avatar.trim();
+        this.avatar = avatar;
     }
 
     public Date getAddTime() {
@@ -95,11 +100,11 @@ public class Admin {
         this.deleted = deleted;
     }
 
-    public String getRoleIds() {
+    public Integer[] getRoleIds() {
         return roleIds;
     }
 
-    public void setRoleIds(String roleIds) {
-        this.roleIds = roleIds == null ? null : roleIds.trim();
+    public void setRoleIds(Integer[] roleIds) {
+        this.roleIds = roleIds;
     }
 }

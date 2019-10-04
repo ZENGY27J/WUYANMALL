@@ -1,6 +1,6 @@
 package com.wuyan.mall.controller;
 
-import com.wuyan.mall.service.storageService.StorageService;
+import com.wuyan.mall.service.storageService.UploadService;
 import com.wuyan.mall.vo.BaseRespVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class StorageController {
 
     @Autowired
-    StorageService storageService;
+    UploadService uploadService;
     /**
      * 商品图片上传
      * @param file
@@ -26,7 +26,7 @@ public class StorageController {
      */
     @RequestMapping("create")
     public BaseRespVo fileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest httpServletRequest){
-        BaseRespVo baseRespVo = storageService.uploadFile(file);
+        BaseRespVo baseRespVo = uploadService.uploadFile(file);
         return baseRespVo;
     }
 }

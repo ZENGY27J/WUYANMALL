@@ -1,16 +1,13 @@
 package com.wuyan.mall.service.storageService;
 
 import com.wuyan.mall.bean.Storage;
-import com.wuyan.mall.mapper.CommentMapper;
 import com.wuyan.mall.mapper.StorageMapper;
-import com.wuyan.mall.util.DateUtil;
 import com.wuyan.mall.vo.BaseRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -19,7 +16,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-public class StorageServiceImpl implements  StorageService{
+public class UploadServiceImpl implements UploadService {
     //file.rootPath: E:/img/
 
     //图片存放根路径

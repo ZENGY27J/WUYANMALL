@@ -1,14 +1,11 @@
-package com.wuyan.mall.mapper;
+package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Storage;
 import com.wuyan.mall.bean.StorageExample;
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
+import com.wuyan.mall.vo.ResultInfos;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
-public interface StorageMapper {
+public interface StorageService {
     long countByExample(StorageExample example);
 
     int deleteByExample(StorageExample example);
@@ -19,7 +16,7 @@ public interface StorageMapper {
 
     int insertSelective(Storage record);
 
-    List<Storage> selectByExample(StorageExample example);
+    ResultInfos selectByExample(int page, int limit, String key, String name);
 
     Storage selectByPrimaryKey(Integer id);
 

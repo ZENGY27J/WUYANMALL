@@ -1,15 +1,11 @@
-package com.wuyan.mall.mapper;
+package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Admin;
 import com.wuyan.mall.bean.AdminExample;
-import java.util.List;
-
-import com.wuyan.mall.vo.AdminInfo;
-import org.apache.ibatis.annotations.Mapper;
+import com.wuyan.mall.vo.ResultInfos;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
-public interface AdminMapper {
+public interface AdminService {
     long countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);
@@ -20,7 +16,7 @@ public interface AdminMapper {
 
     int insertSelective(Admin record);
 
-    List<AdminInfo> selectByExample(AdminExample example);
+    ResultInfos selectByExample(int page, int limit, String username);
 
     Admin selectByPrimaryKey(Integer id);
 

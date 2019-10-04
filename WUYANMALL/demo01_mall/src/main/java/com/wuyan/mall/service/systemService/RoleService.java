@@ -1,14 +1,11 @@
-package com.wuyan.mall.mapper;
+package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Role;
 import com.wuyan.mall.bean.RoleExample;
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
+import com.wuyan.mall.vo.ResultInfos;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
-public interface RoleMapper {
+public interface RoleService {
     long countByExample(RoleExample example);
 
     int deleteByExample(RoleExample example);
@@ -19,7 +16,7 @@ public interface RoleMapper {
 
     int insertSelective(Role record);
 
-    List<Role> selectByExample(RoleExample example);
+    ResultInfos selectByExample(int page, int limit, String name);
 
     Role selectByPrimaryKey(Integer id);
 

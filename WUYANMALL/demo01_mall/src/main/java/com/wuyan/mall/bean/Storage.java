@@ -1,7 +1,7 @@
 package com.wuyan.mall.bean;
 
 import org.springframework.stereotype.Component;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 @Component
@@ -18,8 +18,10 @@ public class Storage {
 
     private String url;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date addTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     private Boolean deleted;

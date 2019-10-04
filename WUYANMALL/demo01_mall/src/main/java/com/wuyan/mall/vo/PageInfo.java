@@ -1,5 +1,4 @@
 package com.wuyan.mall.vo;
-
 import java.util.List;
 
 /**
@@ -137,6 +136,7 @@ public class PageInfo {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
     public int getPage() {
         return page;
     }
