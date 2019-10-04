@@ -11,6 +11,8 @@ public class BaseRespVo<T> {
     String errmsg;
     int errno;
 
+
+
     public T getData() {
         return data;
     }
@@ -41,4 +43,29 @@ public class BaseRespVo<T> {
         baseRespVo.setErrno(0);
         return baseRespVo;
     }
+    public static BaseRespVo error(Object data) {
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setData(data);
+        baseRespVo.setErrmsg("参数值不对");
+        baseRespVo.setErrno(402);
+        return baseRespVo;
+    }
+
+    public static BaseRespVo badArgument(Object data) {
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setData(data);
+        baseRespVo.setErrmsg("参数不对");
+        baseRespVo.setErrno(401);
+        return baseRespVo;
+    }
+
+    public static BaseRespVo updatedDataFiled(Object data) {
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setData(data);
+        baseRespVo.setErrmsg("更新数据失败");
+        baseRespVo.setErrno(505);
+        return baseRespVo;
+    }
+
+
 }
