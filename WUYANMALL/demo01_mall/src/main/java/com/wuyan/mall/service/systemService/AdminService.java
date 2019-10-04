@@ -2,10 +2,8 @@ package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Admin;
 import com.wuyan.mall.bean.AdminExample;
-import com.wuyan.mall.vo.AdminInfo;
+import com.wuyan.mall.vo.ResultInfos;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface AdminService {
     long countByExample(AdminExample example);
@@ -18,7 +16,7 @@ public interface AdminService {
 
     int insertSelective(Admin record);
 
-    List<AdminInfo> selectByExample(String username);
+    ResultInfos selectByExample(int page, int limit, String username);
 
     Admin selectByPrimaryKey(Integer id);
 

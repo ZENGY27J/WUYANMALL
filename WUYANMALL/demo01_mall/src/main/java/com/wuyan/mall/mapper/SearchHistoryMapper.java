@@ -4,6 +4,7 @@ import com.wuyan.mall.bean.SearchHistory;
 import com.wuyan.mall.bean.SearchHistoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface SearchHistoryMapper {
     long countByExample(SearchHistoryExample example);

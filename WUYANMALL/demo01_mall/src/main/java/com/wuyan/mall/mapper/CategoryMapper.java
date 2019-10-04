@@ -3,8 +3,10 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.Category;
 import com.wuyan.mall.bean.CategoryExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface CategoryMapper {
     long countByExample(CategoryExample example);
 
@@ -27,4 +29,6 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    List<Category> selectAll(@Param("id") int id);
 }

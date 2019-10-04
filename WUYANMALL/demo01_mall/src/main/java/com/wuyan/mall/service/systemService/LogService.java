@@ -2,10 +2,8 @@ package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Log;
 import com.wuyan.mall.bean.LogExample;
+import com.wuyan.mall.vo.ResultInfos;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 public interface LogService {
     long countByExample(LogExample example);
@@ -18,7 +16,7 @@ public interface LogService {
 
     int insertSelective(Log record);
 
-    List<Log> selectByExample(String name);
+    ResultInfos selectByExample(int page, int limit, String name);
 
     Log selectByPrimaryKey(Integer id);
 

@@ -1,9 +1,12 @@
 package com.wuyan.mall.service.systemService;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wuyan.mall.bean.Admin;
 import com.wuyan.mall.bean.AdminExample;
 import com.wuyan.mall.mapper.AdminMapper;
 import com.wuyan.mall.vo.AdminInfo;
+import com.wuyan.mall.vo.ResultInfos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,7 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
+        adminMapper.deleteByPrimaryKey(id);
         return 0;
     }
 
@@ -37,23 +41,33 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public int insertSelective(Admin record) {
-        return 0;
+        int flag = adminMapper.insertSelective(record);
+        return flag;
     }
 
     @Override
-    public List<AdminInfo> selectByExample(String username) {
+    public ResultInfos selectByExample(int page, int limit, String username) {
+        PageHelper.startPage(page,limit);
         AdminExample example = new AdminExample();
         AdminExample.Criteria criteria = example.createCriteria();
         if(username != null){
             criteria.andUsernameLike("%" + username + "%");
         }
         List<AdminInfo> admins = adminMapper.selectByExample(example);
-        return admins;
+
+        PageInfo<AdminInfo> adminInfoPageInfo = new PageInfo<>(admins);
+        long total = adminInfoPageInfo.getTotal();
+
+        ResultInfos results = new ResultInfos();
+        results.setTotal(total);
+        results.setItems(admins);
+        return results;
     }
 
     @Override
     public Admin selectByPrimaryKey(Integer id) {
-        return null;
+        Admin admin = adminMapper.selectByPrimaryKey(id);
+        return admin;
     }
 
     @Override
@@ -68,7 +82,8 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public int updateByPrimaryKeySelective(Admin record) {
-        return 0;
+        int flag = adminMapper.updateByPrimaryKeySelective(record);
+        return flag;
     }
 
     @Override

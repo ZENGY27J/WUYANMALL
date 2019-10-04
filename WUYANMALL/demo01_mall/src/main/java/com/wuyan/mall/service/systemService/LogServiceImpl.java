@@ -1,8 +1,11 @@
 package com.wuyan.mall.service.systemService;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wuyan.mall.bean.Log;
 import com.wuyan.mall.bean.LogExample;
 import com.wuyan.mall.mapper.LogMapper;
+import com.wuyan.mall.vo.ResultInfos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +43,8 @@ public class LogServiceImpl implements LogService{
     }
 
     @Override
-    public List<Log> selectByExample(String name) {
+    public ResultInfos selectByExample(int page, int limit, String name) {
+        PageHelper.startPage(page,limit);
         LogExample example = new LogExample();
         LogExample.Criteria criteria = example.createCriteria();
 
@@ -49,7 +53,14 @@ public class LogServiceImpl implements LogService{
         }
 
         List<Log> logs = logMapper.selectByExample(example);
-        return logs;
+
+        PageInfo<Log> logPageInfo = new PageInfo<>(logs);
+        long total = logPageInfo.getTotal();
+
+        ResultInfos results = new ResultInfos();
+        results.setTotal(total);
+        results.setItems(logs);
+        return results;
     }
 
     @Override

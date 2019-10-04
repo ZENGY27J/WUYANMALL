@@ -1,6 +1,7 @@
 package com.wuyan.mall.controller;
 
 import com.wuyan.mall.bean.*;
+import com.wuyan.mall.mapper.RoleMapper;
 import com.wuyan.mall.service.systemService.AdminService;
 import com.wuyan.mall.service.systemService.LogService;
 import com.wuyan.mall.service.systemService.RoleService;
@@ -20,6 +21,9 @@ import java.util.List;
 public class SystemController {
 
     @Autowired
+    RoleMapper roleMapper;
+
+    @Autowired
     AdminService adminService;
 
     @Autowired
@@ -31,88 +35,126 @@ public class SystemController {
     @Autowired
     StorageService storageService;
 
+    /**
+     * 管理员信息
+     * @param pageInfo
+     * @param username
+     * @return
+     */
     @RequestMapping("admin/admin/list")
     public BaseRespVo adminList(PageInfo pageInfo, String username){
-        System.out.println(pageInfo.getLimit());
-        System.out.println(username);
+        //System.out.println(pageInfo.getLimit());
+        //System.out.println(username);
 
-        List<AdminInfo> admins = adminService.selectByExample(username);
-
-        ResultInfos results = new ResultInfos();
-        results.setTotal(admins.size());
-        results.setItems(admins);
-
-        BaseRespVo ok = BaseRespVo.ok(results);
-        return ok;
-    }
-
-    @RequestMapping("admin/role/options")
-    public BaseRespVo roleOptions(){
-        RoleInfo role = new RoleInfo();
-        role.setValue(12);
-        role.setLabel("奥特曼");
-
-        List<RoleInfo> roles = new ArrayList<>();
-        roles.add(role);
-
-        BaseRespVo ok = BaseRespVo.ok(roles);
-        return ok;
-    }
-
-    @RequestMapping("admin/log/list")
-    public BaseRespVo logList(PageInfo pageInfo, String name){
-
-        List<Log> logs = logService.selectByExample(name);
-
-        ResultInfos results = new ResultInfos();
-        results.setTotal(logs.size());
-        results.setItems(logs);
+        ResultInfos results = adminService.selectByExample(pageInfo.getPage(), pageInfo.getLimit(), username);
 
         BaseRespVo ok = BaseRespVo.ok(results);
         return ok;
     }
 
     /**
-     *
+     * 增加管理员
+     * @return
+     */
+    @RequestMapping("admin/admin/create")
+    public BaseRespVo adminCreate(@RequestBody Admin admin){
+        admin.setAddTime(new Date());
+        admin.setUpdateTime(new Date());
+
+        int flag = adminService.insertSelective(admin);
+        if(flag != 0){
+            Admin adminToVo = adminService.selectByPrimaryKey(admin.getId());
+            BaseRespVo ok = BaseRespVo.ok(adminToVo);
+            return ok;
+        }
+        return null;
+    }
+
+    /**
+     * 修改管理员信息
+     * @return
+     */
+    @RequestMapping("admin/admin/update")
+    public BaseRespVo adminUpdate(@RequestBody Admin admin){
+        int flag = adminService.updateByPrimaryKeySelective(admin);
+
+        if(flag != 0){
+            Admin adminToVo = adminService.selectByPrimaryKey(admin.getId());
+            BaseRespVo ok = BaseRespVo.ok(adminToVo);
+            return ok;
+        }
+        return null;
+    }
+
+    /**
+     * 删除管理员
+     * @param admin
+     * @return
+     */
+    @RequestMapping("admin/admin/delete")
+    public BaseRespVo adminDelete(@RequestBody Admin admin){
+        adminService.deleteByPrimaryKey(admin.getId());
+        return BaseRespVo.ok(null);
+    }
+
+    @RequestMapping("admin/role/options")
+    public BaseRespVo roleOptions(){
+
+
+        RoleExample example = new RoleExample();
+        List<Role> roles = roleMapper.selectByExample(example);
+
+        List<RoleInfo> rolesToVo = new ArrayList<>();
+        for (int i = 0; i < roles.size(); i++) {
+            RoleInfo role = new RoleInfo();
+            role.setValue(roles.get(i).getId());
+            role.setLabel(roles.get(i).getName());
+            rolesToVo.add(role);
+        }
+
+        BaseRespVo ok = BaseRespVo.ok(rolesToVo);
+        return ok;
+    }
+
+    /**
+     * 获得日志信息
+     * @param pageInfo
+     * @param name
+     * @return
+     */
+    @RequestMapping("admin/log/list")
+    public BaseRespVo logList(PageInfo pageInfo, String name){
+
+        ResultInfos results = logService.selectByExample(pageInfo.getPage(), pageInfo.getLimit(), name);
+
+        BaseRespVo ok = BaseRespVo.ok(results);
+        return ok;
+    }
+
+    /**
+     * 获取角色信息
      * @param pageInfo
      * @return
      */
     @RequestMapping("admin/role/list")
     public BaseRespVo roleList(PageInfo pageInfo, String name){
         //System.out.println(pageInfo.getLimit());
-        RoleExample roleExample = new RoleExample();
-        List<Role> roles = roleService.selectByExample(name);
+        ResultInfos results = roleService.selectByExample(pageInfo.getPage(), pageInfo.getLimit(), name);
 
-        //封装
-        ResultInfos results = new ResultInfos();
-        results.setTotal(roles.size());
-        results.setItems(roles);
         //返回
         BaseRespVo ok = BaseRespVo.ok(results);
         return ok;
     }
 
     /**
-     * 获得对象
-     * @param pageInfo
+     * 增加角色信息
+     * @param roleVo
      * @return
      */
-    @RequestMapping("admin/storage/list")
-    public BaseRespVo storageList(PageInfo pageInfo,String key,String name){
-        List<Storage> storages = storageService.selectByExample(key, name);
-        //封装
-        ResultInfos results = new ResultInfos();
-        results.setTotal(storages.size());
-        results.setItems(storages);
-        //返回
-        BaseRespVo ok = BaseRespVo.ok(results);
-        return ok;
-    }
-
     @RequestMapping("admin/role/create")
     public BaseRespVo roleCreate(@RequestBody RoleVo roleVo){
-        System.out.println(roleVo.getDesc());
-        System.out.println(roleVo.getName());
+        /*System.out.println(roleVo.getDesc());
+        System.out.println(roleVo.getName());*/
 
         Role role = new Role();
         role.setName(roleVo.getName());
@@ -128,5 +170,66 @@ public class SystemController {
             return ok;
         }
         return null;
+    }
+
+    /**
+     * 修改角色信息
+     * @param role
+     * @return
+     */
+    @RequestMapping("admin/role/update")
+    public BaseRespVo roleUpdate(@RequestBody Role role){
+        roleService.updateByPrimaryKeySelective(role);
+        return BaseRespVo.ok(null);
+    }
+
+    /**
+     * 删除角色信息
+     * @param role
+     * @return
+     */
+    @RequestMapping("admin/role/delete")
+    public BaseRespVo roleDelete(@RequestBody Role role){
+        roleService.deleteByPrimaryKey(role.getId());
+        return BaseRespVo.ok(null);
+    }
+
+    /**
+     * 获得对象
+     * @param pageInfo
+     * @return
+     */
+    @RequestMapping("admin/storage/list")
+    public BaseRespVo storageList(PageInfo pageInfo,String key,String name){
+        ResultInfos results = storageService.selectByExample(pageInfo.getPage(), pageInfo.getLimit(), key, name);
+
+        //返回
+        BaseRespVo ok = BaseRespVo.ok(results);
+        return ok;
+    }
+
+    /**
+     * 修改对象信息
+     * @param storage
+     * @return
+     */
+    @RequestMapping("admin/storage/update")
+    public BaseRespVo storageUpdate(@RequestBody Storage storage){
+        storageService.updateByPrimaryKeySelective(storage);
+
+        Storage storageToVo = storageService.selectByPrimaryKey(storage.getId());
+
+        return BaseRespVo.ok(storageToVo);
+    }
+
+    /**
+     * 删除对象信息
+     * @param storage
+     * @return
+     */
+    @RequestMapping("admin/storage/delete")
+    public BaseRespVo storageDelete(@RequestBody Storage storage){
+        storageService.deleteByPrimaryKey(storage.getId());
+        return BaseRespVo.ok(null);
     }
 }

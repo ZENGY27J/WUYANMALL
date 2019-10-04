@@ -1,5 +1,6 @@
 server:
   port: 80
+
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -7,6 +8,8 @@ spring:
     username: root
     password: 123456
 
+pagehelper:
+  helper-dialect: mysql
 
 logging:
   level:
@@ -16,3 +19,4 @@ logging:
           mapper: debug
 mybatis:
   type-handlers-package: com.wuyan.mall.mybatis
+

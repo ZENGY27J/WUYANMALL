@@ -2,9 +2,8 @@ package com.wuyan.mall.service.systemService;
 
 import com.wuyan.mall.bean.Storage;
 import com.wuyan.mall.bean.StorageExample;
+import com.wuyan.mall.vo.ResultInfos;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface StorageService {
     long countByExample(StorageExample example);
@@ -17,7 +16,7 @@ public interface StorageService {
 
     int insertSelective(Storage record);
 
-    List<Storage> selectByExample(String key,String name);
+    ResultInfos selectByExample(int page, int limit, String key, String name);
 
     Storage selectByPrimaryKey(Integer id);
 

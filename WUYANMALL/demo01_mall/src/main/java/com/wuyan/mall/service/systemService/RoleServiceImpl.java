@@ -1,8 +1,11 @@
 package com.wuyan.mall.service.systemService;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wuyan.mall.bean.Role;
 import com.wuyan.mall.bean.RoleExample;
 import com.wuyan.mall.mapper.RoleMapper;
+import com.wuyan.mall.vo.ResultInfos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,7 @@ public class RoleServiceImpl implements RoleService{
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
+        roleMapper.deleteByPrimaryKey(id);
         return 0;
     }
 
@@ -41,7 +45,8 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<Role> selectByExample(String name) {
+    public ResultInfos selectByExample(int page, int limit, String name) {
+        PageHelper.startPage(page,limit);
         RoleExample example = new RoleExample();
         RoleExample.Criteria criteria = example.createCriteria();
         if(name != null){
@@ -49,7 +54,14 @@ public class RoleServiceImpl implements RoleService{
         }
 
         List<Role> roles = roleMapper.selectByExample(example);
-        return roles;
+
+        PageInfo<Role> rolePageInfo = new PageInfo<>(roles);
+        long total = rolePageInfo.getTotal();
+
+        ResultInfos results = new ResultInfos();
+        results.setTotal(total);
+        results.setItems(roles);
+        return results;
     }
 
     @Override
@@ -75,6 +87,7 @@ public class RoleServiceImpl implements RoleService{
 
     @Override
     public int updateByPrimaryKey(Role record) {
+        roleMapper.updateByPrimaryKey(record);
         return 0;
     }
 }
