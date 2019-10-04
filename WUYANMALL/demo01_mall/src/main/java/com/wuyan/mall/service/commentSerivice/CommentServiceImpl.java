@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wuyan.mall.bean.Accept.DeleteComment;
 import com.wuyan.mall.bean.Comment;
-import com.wuyan.mall.bean.Goods;
 import com.wuyan.mall.bean.CommentExample;
 import com.wuyan.mall.mapper.CommentMapper;
 import com.wuyan.mall.vo.BaseRespVo;
@@ -98,12 +97,17 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public BaseRespVo deleteComment(DeleteComment deleteComment) {
+
+        /*
+        将delete中改为true
         CommentExample commentExample=new CommentExample();
         CommentExample.Criteria criteria=commentExample.createCriteria();
         criteria.andIdEqualTo(deleteComment.getId());
         Comment comment = new Comment();
         comment.setDeleted(true);
-        commentMapper.updateByExampleSelective(comment,commentExample);
+        commentMapper.updateByExampleSelective(comment,commentExample);*/
+
+        commentMapper.deleteByPrimaryKey(deleteComment.getId());
 
         baseRespVo.setErrno(0);
         baseRespVo.setErrmsg("成功");

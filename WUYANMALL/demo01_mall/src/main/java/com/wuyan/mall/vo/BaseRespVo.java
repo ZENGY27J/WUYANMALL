@@ -45,4 +45,12 @@ public class BaseRespVo<T> {
         baseRespVo.setErrno(0);
         return baseRespVo;
     }
+    public static BaseRespVo error(Object data) {
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setData(data);
+        baseRespVo.setErrmsg("参数值不对");
+        baseRespVo.setErrno(402);
+        return baseRespVo;
+    }
+
 }

@@ -142,6 +142,7 @@ public class GoodsServiceImpl implements GoodsService {
         goodsMapper.insert(createGoods.getGoods());
         int goodsId=createGoods.getGoods().getId();
 
+
         //specification
         for (GoodsSpecification goodsSpecification : createGoods.getSpecifications()) {
             goodsSpecification.setAddTime(date);
@@ -152,13 +153,13 @@ public class GoodsServiceImpl implements GoodsService {
         }
 
         //product
-        for (GoodsProduct goodsProduct : createGoods.getProducts()) {
-            goodsProduct.setAddTime(date);
-            goodsProduct.setUpdateTime(date);
-            goodsProduct.setGoodsId(goodsId);
-            productMapper.insert(goodsProduct);
-        }
+       for (GoodsProduct goodsProduct : createGoods.getProducts()) {
+           goodsProduct.setAddTime(date);
+           goodsProduct.setUpdateTime(date);
+           goodsProduct.setGoodsId(goodsId);
+           productMapper.insert(goodsProduct);
 
+       }
         //attributes
         for (GoodsAttribute attribute : createGoods.getAttributes()) {
             attribute.setAddTime(date);
@@ -223,7 +224,7 @@ public class GoodsServiceImpl implements GoodsService {
         int[] categros = {categorypid, goods.getCategoryId()};
         singleGoodsVo.setCategoryIds(categros);
 
-        //gods
+        //goods
         singleGoodsVo.setGoods(goodsMapper.selectByPrimaryKey(id));
 
         //goodsSpecification
@@ -254,47 +255,150 @@ public class GoodsServiceImpl implements GoodsService {
         return baseRespVo;
     }
 
+    /*
+    * 更改商品
+    * 我们这里作的操作是根据goods id 到specification 和 product 和 attributes 中将相关的数据全删除后
+    * 重新添加
+    * */
     @Override
     public void updateGoods(CreateGoods createGoods) {
         //goods
         Date date = new Date();
         createGoods.getGoods().setUpdateTime(date);
         goodsMapper.updateByPrimaryKey(createGoods.getGoods());
-        String goodsIdstring = createGoods.getGoods().getGoodsSn();
-        int goodsIdint = Integer.parseInt(goodsIdstring);
+        int goodsId = createGoods.getGoods().getId();
 
+        //删除该商品的规格
+        GoodsSpecificationExample specificationExample = new GoodsSpecificationExample();
+        GoodsSpecificationExample.Criteria criteria = specificationExample.createCriteria();
+        criteria.andGoodsIdEqualTo(goodsId);
+        specificationMapper.deleteByExample(specificationExample);
+
+        //删除改商品的商品设置
+        GoodsProductExample goodsProductExample = new GoodsProductExample();
+        GoodsProductExample.Criteria criteria1 = goodsProductExample.createCriteria();
+        criteria1.andGoodsIdEqualTo(goodsId);
+        productMapper.deleteByExample(goodsProductExample);
+
+        //删除商品的参数
+        GoodsAttributeExample goodsAttributeExample = new GoodsAttributeExample();
+        GoodsAttributeExample.Criteria criteria2 = goodsAttributeExample.createCriteria();
+        criteria2.andGoodsIdEqualTo(goodsId);
+        attributeMapper.deleteByExample(goodsAttributeExample);
+
+        //重新插入
         //specification
         for (GoodsSpecification goodsSpecification : createGoods.getSpecifications()) {
             goodsSpecification.setUpdateTime(date);
-            goodsSpecification.setGoodsId(goodsIdint);
-            specificationMapper.updateByPrimaryKey(goodsSpecification);
+            goodsSpecification.setGoodsId(goodsId);
+            specificationMapper.insert(goodsSpecification);
+
+        }
+        //product
+        for (GoodsProduct goodsProduct : createGoods.getProducts()) {
+            goodsProduct.setUpdateTime(date);
+            goodsProduct.setGoodsId(goodsId);
+            productMapper.insert(goodsProduct);
+
+        }
+        //attributes
+        for (GoodsAttribute attribute : createGoods.getAttributes()) {
+            attribute.setUpdateTime(date);
+            attribute.setGoodsId(goodsId);
+            attributeMapper.insert(attribute);
+        }
+
+
+        /*
+        //specification
+        for (GoodsSpecification goodsSpecification : createGoods.getSpecifications()) {
+            if (goodsSpecification.getId()==null || "".equals(goodsSpecification.getId())){
+                goodsSpecification.setAddTime(date);
+                goodsSpecification.setUpdateTime(date);
+                goodsSpecification.setGoodsId(goodsId);
+                specificationMapper.insert(goodsSpecification);
+            }else {
+                goodsSpecification.setUpdateTime(date);
+                goodsSpecification.setGoodsId(goodsId);
+
+               *//* GoodsSpecificationExample specificationExample = new GoodsSpecificationExample();
+                GoodsSpecificationExample.Criteria criteria = specificationExample.createCriteria();
+                criteria.andGoodsIdEqualTo(goodsId);
+                specificationMapper.updateByExampleSelective(goodsSpecification,specificationExample);*//*
+
+                specificationMapper.updateByPrimaryKeySelective(goodsSpecification);
+            }
         }
 
         //product
         for (GoodsProduct goodsProduct : createGoods.getProducts()) {
+          *//*  if (goodsProduct.getId()==null || "".equals(goodsProduct.getId())){
+                goodsProduct.setAddTime(date);
+                goodsProduct.setUpdateTime(date);
+                goodsProduct.setGoodsId(goodsId);
+                productMapper.insert(goodsProduct);
+            }*//*
             goodsProduct.setUpdateTime(date);
-            goodsProduct.setGoodsId(goodsIdint);
-            productMapper.updateByPrimaryKey(goodsProduct);
+            goodsProduct.setGoodsId(goodsId);
+
+            GoodsProductExample goodsProductExample = new GoodsProductExample();
+            GoodsProductExample.Criteria criteria = goodsProductExample.createCriteria();
+            criteria .andGoodsIdEqualTo(goodsId);
+            productMapper.updateByExample(goodsProduct,goodsProductExample);
+
+            //productMapper.updateByPrimaryKey(goodsProduct);
         }
+
 
         //attributes
         for (GoodsAttribute attribute : createGoods.getAttributes()) {
-            attribute.setUpdateTime(date);
-            attribute.setGoodsId(goodsIdint);
-            attributeMapper.updateByPrimaryKey(attribute);
-        }
+            if (attribute.getId()==null || "".equals(attribute.getId())){
+                attribute.setAddTime(date);
+                attribute.setUpdateTime(date);
+                attribute.setGoodsId(goodsId);
+                attributeMapper.insert(attribute);
+            }else{
+                attribute.setUpdateTime(date);
+                attribute.setGoodsId(goodsId);
+                attributeMapper.updateByPrimaryKey(attribute);
+            }
+        }*/
     }
 
     /*删除商品
-    * 让goods中的delet属性改为true*/
+    *
+    *
+    * */
     @Override
     public BaseRespVo deleteGoodsById(int id) {
+
+      /*
+        本来是将delete改为true
         Goods goods = new Goods();
         goods.setDeleted(true);
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
         criteria.andIdEqualTo(id);
-        goodsMapper.updateByExampleSelective(goods,goodsExample);
+        goodsMapper.updateByExampleSelective(goods,goodsExample);*/
+        goodsMapper.deleteByPrimaryKey(id);
+
+        //删除该商品的规格
+        GoodsSpecificationExample specificationExample = new GoodsSpecificationExample();
+        GoodsSpecificationExample.Criteria criteria = specificationExample.createCriteria();
+        criteria.andGoodsIdEqualTo(id);
+        specificationMapper.deleteByExample(specificationExample);
+
+        //删除改商品的商品设置
+        GoodsProductExample goodsProductExample = new GoodsProductExample();
+        GoodsProductExample.Criteria criteria1 = goodsProductExample.createCriteria();
+        criteria1.andGoodsIdEqualTo(id);
+        productMapper.deleteByExample(goodsProductExample);
+
+        //删除商品的参数
+        GoodsAttributeExample goodsAttributeExample = new GoodsAttributeExample();
+        GoodsAttributeExample.Criteria criteria2 = goodsAttributeExample.createCriteria();
+        criteria2.andGoodsIdEqualTo(id);
+        attributeMapper.deleteByExample(goodsAttributeExample);
 
         BaseRespVo baseRespVo = new BaseRespVo();
         baseRespVo.setErrno(0);

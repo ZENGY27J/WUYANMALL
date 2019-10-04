@@ -1,4 +1,4 @@
-package com.wuyan.mall.bean.UserMagerBean;
+package com.wuyan.mall.bean;
 
 import java.util.List;
 

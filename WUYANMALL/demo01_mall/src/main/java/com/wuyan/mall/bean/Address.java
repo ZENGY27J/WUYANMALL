@@ -26,7 +26,6 @@ public class Address {
     private Date updateTime;
 
     private Boolean deleted;
-
     // area名
     private String area;
     // city名

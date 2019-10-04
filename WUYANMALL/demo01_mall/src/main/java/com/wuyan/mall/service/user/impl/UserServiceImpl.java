@@ -3,11 +3,10 @@ package com.wuyan.mall.service.user.impl;
 import com.github.pagehelper.PageHelper;
 import com.wuyan.mall.bean.*;
 import com.wuyan.mall.bean.UserMagerBean.AddressPage;
-import com.wuyan.mall.bean.UserMagerBean.BaseData;
 import com.wuyan.mall.bean.UserMagerBean.UserPage;
 import com.wuyan.mall.mapper.*;
 import com.wuyan.mall.service.user.UserService;
-import com.wuyan.mall.vo.PageInfo;
+import com.wuyan.mall.vo.UserPageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +15,11 @@ import java.util.List;
 /**
  * @Program: WUYANMALL
  * @Author: ZyEthan
- * @Description: 用户管理接口实现类
+ * @Description: 用户管理接口实现类(查找时非法字符要做校验)
  * @Date: 2019-09-30-15:57
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
     @Autowired
     UserMapper userMapper;
     @Autowired
@@ -33,6 +32,9 @@ public class UserServiceImpl implements UserService {
     FootprintMapper footprintMapper;
     @Autowired
     SearchHistoryMapper searchHistoryMapper;
+    @Autowired
+    FeedbackMapper feedbackMapper;
+
 
     /**
      * 查询用户列表
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public UserPage getUserPage(PageInfo pageInfo) {
+    public UserPage getUserPage(UserPageInfo pageInfo) {
         UserPage userPage = new UserPage();
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
@@ -50,7 +52,8 @@ public class UserServiceImpl implements UserService {
         List<User> users = null;
         long total = 0;
         // 查找：条件返回
-        if (pageInfo.getUsername() == null && pageInfo.getMobile() == null) {
+        if (pageInfo.getUsername() == null && pageInfo.getMobile() == null ||
+                pageInfo.getUsername() == "" && pageInfo.getMobile() == "") {
             users = userMapper.selectByExample(userExample);
             total = userMapper.countByExample(userExample);
         } else if (pageInfo.getUsername() == null && pageInfo.getMobile() != null) {
@@ -78,7 +81,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public AddressPage getAddressPage(PageInfo pageInfo) {
+    public AddressPage getAddressPage(UserPageInfo pageInfo) {
         AddressPage addressPage = new AddressPage();
         AddressExample addressExample = new AddressExample();
         AddressExample.Criteria criteria = addressExample.createCriteria();
@@ -88,7 +91,11 @@ public class UserServiceImpl implements UserService {
         long total = 0;
         //查找：条件返回
         int userId = 0;
+        String regex = "^[0-9]*$";
         if (pageInfo.getUserId() != null && pageInfo.getUserId() != "") {
+            if (!pageInfo.getUserId().matches(regex)) {
+                return null;
+            }
              userId= Integer.valueOf(pageInfo.getUserId());
         }
         if (userId == 0 && pageInfo.getName() == null) {
@@ -139,7 +146,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BaseData<Collect> getUserCollect(PageInfo pageInfo) {
+    public BaseData<Collect> getUserCollect(UserPageInfo pageInfo) {
         BaseData<Collect> collectBaseData = new BaseData<>();
         CollectExample collectExample = new CollectExample();
         CollectExample.Criteria criteria = collectExample.createCriteria();
@@ -150,10 +157,17 @@ public class UserServiceImpl implements UserService {
         //查找：条件返回
         int userId = 0;
         int valueId = 0;
+        String regex = "^[0-9]*$";
         if (pageInfo.getUserId() != null && pageInfo.getUserId() != "") {
+            if (!pageInfo.getUserId().matches(regex)) {
+                return null;
+            }
             userId= Integer.valueOf(pageInfo.getUserId());
         }
         if (pageInfo.getValueId() != null && pageInfo.getValueId() != "") {
+            if (!pageInfo.getValueId().matches(regex)) {
+                return null;
+            }
             valueId= Integer.valueOf(pageInfo.getValueId());
         }
         if (userId == 0 && valueId == 0) {
@@ -179,7 +193,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BaseData<Footprint> getFootprint(PageInfo pageInfo) {
+    public BaseData<Footprint> getFootprint(UserPageInfo pageInfo) {
         BaseData<Footprint> footprintBaseData = new BaseData<>();
         FootprintExample footprintExample = new FootprintExample();
         FootprintExample.Criteria criteria = footprintExample.createCriteria();
@@ -190,10 +204,17 @@ public class UserServiceImpl implements UserService {
         //查找：条件返回
         int userId = 0;
         int goodsId = 0;
+        String regex = "^[0-9]*$";
         if (pageInfo.getUserId() != null && pageInfo.getUserId() != "") {
+            if (!pageInfo.getUserId().matches(regex)) {
+                return null;
+            }
             userId= Integer.valueOf(pageInfo.getUserId());
         }
         if (pageInfo.getGoodsId() != null && pageInfo.getGoodsId() != "") {
+            if (!pageInfo.getGoodsId().matches(regex)) {
+                return null;
+            }
             goodsId= Integer.valueOf(pageInfo.getGoodsId());
         }
         if (userId == 0 && goodsId == 0) {
@@ -219,7 +240,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BaseData<SearchHistory> getHistory(PageInfo pageInfo) {
+    public BaseData<SearchHistory> getHistory(UserPageInfo pageInfo) {
         BaseData<SearchHistory> searchHistoryBaseData = new BaseData<>();
         SearchHistoryExample searchHistoryExample = new SearchHistoryExample();
         SearchHistoryExample.Criteria criteria = searchHistoryExample.createCriteria();
@@ -230,16 +251,21 @@ public class UserServiceImpl implements UserService {
         //查找：条件返回
         int userId = 0;
         String keyword = null;
+        String regex = "^[0-9]*$";
         if (pageInfo.getUserId() != null && pageInfo.getUserId() != "") {
+            if (!pageInfo.getUserId().matches(regex)) {
+                return null;
+            }
             userId= Integer.valueOf(pageInfo.getUserId());
         }
         if (pageInfo.getKeyword() != null && pageInfo.getKeyword() != "") {
             keyword= pageInfo.getKeyword();
         }
+
         if (userId == 0 && keyword == null) {
-            searchHistories = searchHistoryMapper.selectByExample(searchHistoryExample);
             total = searchHistoryMapper.countByExample(searchHistoryExample);
-        } else if (userId != 0 && keyword == null) {
+            searchHistories = searchHistoryMapper.selectByExample(searchHistoryExample);
+        }else if (userId != 0 && keyword == null) {
             criteria.andUserIdEqualTo(userId);
             searchHistories = searchHistoryMapper.selectByExample(searchHistoryExample);
             total = searchHistoryMapper.countByExample(searchHistoryExample);
@@ -256,5 +282,51 @@ public class UserServiceImpl implements UserService {
         searchHistoryBaseData.setTotal(total);
         searchHistoryBaseData.setItems(searchHistories);
         return searchHistoryBaseData;
+    }
+
+
+    @Override
+    public BaseData<Feedback> getFeedback(UserPageInfo pageInfo) {
+        BaseData<Feedback> feedbackBaseData = new BaseData<>();
+        FeedbackExample feedbackExample  = new FeedbackExample();
+        FeedbackExample.Criteria criteria = feedbackExample.createCriteria();
+        PageHelper.startPage(pageInfo.getPage(), pageInfo.getLimit());
+        PageHelper.orderBy(pageInfo.getSort());
+        List<Feedback> feedbacks = null;
+        long total = 0;
+        //查找：条件返回
+        int feedbackId = 0;
+        String username = null;
+        // 判断是否有非法字符
+        String regex = "^[0-9]*$";
+        if (pageInfo.getId() != null && pageInfo.getId() != "") {
+            if (!pageInfo.getId().matches(regex)) {
+                return null;
+            }
+            feedbackId= Integer.valueOf(pageInfo.getId());
+        }
+        if (pageInfo.getUsername() != null && pageInfo.getUsername() != "") {
+            username= pageInfo.getUsername();
+        }
+        if (feedbackId == 0 && username == null) {
+            total = feedbackMapper.countByExample(feedbackExample);
+            feedbacks = feedbackMapper.selectByExample(feedbackExample);
+        }else if (feedbackId != 0 && username == null) {
+            criteria.andIdEqualTo(feedbackId);
+            feedbacks = feedbackMapper.selectByExample(feedbackExample);
+            total = feedbackMapper.countByExample(feedbackExample);
+        } else if (feedbackId == 0 && username != null) {
+            criteria.andUsernameLike("%" + username + "%");
+            feedbacks = feedbackMapper.selectByExample(feedbackExample);
+            total = feedbackMapper.countByExample(feedbackExample);
+        } else {
+            criteria.andIdEqualTo(feedbackId);
+            criteria.andUsernameLike("%" + username + "%");
+            feedbacks = feedbackMapper.selectByExample(feedbackExample);
+            total = feedbackMapper.countByExample(feedbackExample);
+        }
+        feedbackBaseData.setTotal(total);
+        feedbackBaseData.setItems(feedbacks);
+        return feedbackBaseData;
     }
 }
