@@ -13,9 +13,9 @@ public class GrouponRules {
     private String goodsName;
 
     private String picUrl;
-
+    //优惠金额
     private BigDecimal discount;
-
+    //达到优惠条件人数
     private Integer discountMember;
 
     private Date addTime;

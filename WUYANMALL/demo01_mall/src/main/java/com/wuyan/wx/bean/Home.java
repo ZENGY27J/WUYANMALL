@@ -94,4 +94,19 @@ public class Home {
     public void setTopicList(List<Topic> topicList) {
         this.topicList = topicList;
     }
+
+    public Home() {
+    }
+
+    public Home(List<Advertisement> banner, List<Brand> brandList, List<Category> channel, List<Coupon> couponList, List<Category> floorGoodsList, List<GrouponList> grouponList, List<Goods> hotGoodsList, List<Goods> newGoodsList, List<Topic> topicList) {
+        this.banner = banner;
+        this.brandList = brandList;
+        this.channel = channel;
+        this.couponList = couponList;
+        this.floorGoodsList = floorGoodsList;
+        this.grouponList = grouponList;
+        this.hotGoodsList = hotGoodsList;
+        this.newGoodsList = newGoodsList;
+        this.topicList = topicList;
+    }
 }
