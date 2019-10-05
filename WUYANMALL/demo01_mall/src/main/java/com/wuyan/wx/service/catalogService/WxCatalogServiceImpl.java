@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class CatalogServiceImpl implements CatalogService{
+public class WxCatalogServiceImpl implements WxCatalogService {
     @Autowired
     CategoryMapper categoryMapper;
     @Override

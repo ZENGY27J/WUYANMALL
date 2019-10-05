@@ -8,6 +8,24 @@ public class CategoryBean {
     List<Category> categoryList;
     Category currentCategory;
     List<Category> currentSubCategory;
+    Category parentCategory;
+    List<Category> brotherCategory;
+
+    public Category getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategory(Category parentCategory) {
+        this.parentCategory = parentCategory;
+    }
+
+    public List<Category> getBrotherCategory() {
+        return brotherCategory;
+    }
+
+    public void setBrotherCategory(List<Category> brotherCategory) {
+        this.brotherCategory = brotherCategory;
+    }
 
     public List<Category> getCategoryList() {
         return categoryList;
