@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, last_login_ip, last_login_time, avatar, add_time, update_time, 
+    id, username, password, last_login_ip, last_login_time, avatar, add_time, update_time,
     deleted, role_ids
   </sql>
   <select id="selectByExample" parameterType="com.wuyan.mall.bean.AdminExample" resultMap="BaseResultMap">
@@ -90,7 +90,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_admin
     where id = #{id,jdbcType=INTEGER}
@@ -106,14 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wuyan.mall.bean.Admin">
-    insert into cskaoyan_mall_admin (id, username, password, 
-      last_login_ip, last_login_time, avatar, 
-      add_time, update_time, deleted, 
+    insert into cskaoyan_mall_admin (id, username, password,
+      last_login_ip, last_login_time, avatar,
+      add_time, update_time, deleted,
       role_ids)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, 
-      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
-      #{roleIds,jdbcType=VARCHAR})
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR},
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT},
+      #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander})
   </insert>
   <insert id="insertSelective" parameterType="com.wuyan.mall.bean.Admin">
     insert into cskaoyan_mall_admin
@@ -178,7 +178,7 @@
         #{deleted,jdbcType=BIT},
       </if>
       <if test="roleIds != null">
-        #{roleIds,jdbcType=VARCHAR},
+        #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       </if>
     </trim>
   </insert>
@@ -219,7 +219,7 @@
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
       <if test="record.roleIds != null">
-        role_ids = #{record.roleIds,jdbcType=VARCHAR},
+        role_ids = #{record.roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       </if>
     </set>
     <if test="_parameter != null">
@@ -237,7 +237,7 @@
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
-      role_ids = #{record.roleIds,jdbcType=VARCHAR}
+      role_ids = #{record.roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -270,7 +270,7 @@
         deleted = #{deleted,jdbcType=BIT},
       </if>
       <if test="roleIds != null">
-        role_ids = #{roleIds,jdbcType=VARCHAR},
+        role_ids = #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -285,7 +285,7 @@
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
-      role_ids = #{roleIds,jdbcType=VARCHAR}
+      role_ids = #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -4,6 +4,7 @@ import com.wuyan.mall.bean.Admin;
 import com.wuyan.mall.bean.AdminExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface AdminMapper {
     long countByExample(AdminExample example);
@@ -27,4 +28,7 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+//    @Select()
+    List<String> queryPermissionsByUsername(@Param("username") String username);
 }

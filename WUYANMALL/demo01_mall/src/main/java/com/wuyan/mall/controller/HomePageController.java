@@ -3,6 +3,8 @@ package com.wuyan.mall.controller;
 import com.wuyan.mall.service.configService.HomePageService;
 import com.wuyan.mall.service.configService.HomePageServicedImpl;
 import com.wuyan.mall.vo.BaseRespVo;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

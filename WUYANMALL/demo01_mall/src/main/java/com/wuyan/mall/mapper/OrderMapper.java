@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+
 @Mapper
 public interface OrderMapper {
     long countByExample(OrderExample example);
@@ -29,4 +31,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    @Update("update cskaoyan_mall_order set order_status =#{status} where id = #{id} ")
+    int updateStatus(@Param("id") Integer id,@Param("status") Integer status);
 }
