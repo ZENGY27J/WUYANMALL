@@ -24,4 +24,9 @@ public class WxSearchController {
         List<String> kw = wxSearchService.getKeyword(keyword);
         return BaseRespVo.ok(kw);
     }
+    @RequestMapping("clearhistory")
+    public BaseRespVo clearHistory(){
+        Boolean flag = wxSearchService.clearHistory();
+        return BaseRespVo.ok(null);
+    }
 }

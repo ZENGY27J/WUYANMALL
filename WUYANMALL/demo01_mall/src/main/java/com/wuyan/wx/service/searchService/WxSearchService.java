@@ -8,4 +8,7 @@ public interface WxSearchService {
     SearchBean getSearchIndex();
 
     List<String> getKeyword(String keyword);
+
+    Boolean clearHistory();
+
 }

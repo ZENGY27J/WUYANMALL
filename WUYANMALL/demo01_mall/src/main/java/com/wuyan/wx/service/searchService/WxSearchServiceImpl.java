@@ -39,4 +39,14 @@ public class WxSearchServiceImpl implements WxSearchService{
         }
         return s;
     }
+
+    @Override
+    public Boolean clearHistory() {
+        int i = searchHistoryMapper.deleteByExample(QueryUtils.getSearchHistory(1));
+        boolean flag = false;
+        if (i != 0){
+            flag = true ;
+        }
+        return flag;
+    }
 }
