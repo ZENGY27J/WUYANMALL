@@ -12,6 +12,10 @@ public class PageInfo {
     int page;
     // 页面大小
     int limit;
+
+    //limit的别名
+    int size;
+
     // 根据对应列排序
     String sort;
     // 排序方式
@@ -40,6 +44,16 @@ public class PageInfo {
     List<Short> orderStatusArray;
 
     String orderSn;
+
+
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     public List<Short> getOrderStatusArray() {
         return orderStatusArray;

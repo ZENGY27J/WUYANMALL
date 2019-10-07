@@ -4,10 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.wuyan.mall.bean.*;
 
 public class QueryUtils {
+    //分页
     public static BrandExample getBrand(int size){
         PageHelper.startPage(1, size);
         return new BrandExample();
     }
+
+
     public static CategoryExample getCategory(int size,int pid){
         CategoryExample categoryExample = new CategoryExample();
         PageHelper.startPage(1,size);
@@ -23,6 +26,12 @@ public class QueryUtils {
         PageHelper.startPage(1, size);
         return new CouponExample();
     }
+
+    public static CouponExample getCoupon(int page, int size) {
+        PageHelper.startPage(page, size);
+        return new CouponExample();
+    }
+
     public static GoodsExample getGoodsByCategoryId(int categoryId,int size){
         GoodsExample goodsExample = new GoodsExample();
         PageHelper.startPage(1,size);

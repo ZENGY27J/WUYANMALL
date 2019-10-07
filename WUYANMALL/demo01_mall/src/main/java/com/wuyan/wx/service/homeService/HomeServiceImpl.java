@@ -47,6 +47,7 @@ public class HomeServiceImpl implements HomeService{
         List<Coupon> couponList = couponMapper.selectByExample(QueryUtils.getCoupon(3));
         //获取指定类目下的商品
         List<Category> floorGoodsList = categoryMapper.selectByExample(QueryUtils.getCategory(4,0));
+
         for (Category category : floorGoodsList) {
             int id = category.getId();
             List<Goods> goods = goodsMapper.selectByExample(QueryUtils.getGoodsByCategoryId(id,2));
@@ -55,6 +56,7 @@ public class HomeServiceImpl implements HomeService{
         //获取团购信息
         List<GrouponRules> grouponRules = grouponRulesMapper.selectByExample(QueryUtils.getGroupon(5));
         List<GrouponList> grouponList = new ArrayList<>();
+
         for (GrouponRules grouponRule : grouponRules) {
             GrouponList grouponList1 = new GrouponList();
             Integer goodsId = grouponRule.getGoodsId();
@@ -73,6 +75,7 @@ public class HomeServiceImpl implements HomeService{
         List<Goods> newGoodsList = goodsMapper.selectByExample(QueryUtils.getNewGoods(7));
         //获取专题
         List<Topic> topics = topicMapper.selectByExample(QueryUtils.getTopic(3));
+
         Home home = new Home(banner, brandList, channel, couponList, floorGoodsList, grouponList, hotGoodsList, newGoodsList, topics);
         return home;
     }

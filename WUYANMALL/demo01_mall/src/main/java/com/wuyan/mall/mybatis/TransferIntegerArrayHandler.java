@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/*@MappedTypes(Integer[].class)*/
+@MappedTypes(Integer[].class)
 public class TransferIntegerArrayHandler implements TypeHandler<Integer[]> {
     ObjectMapper objectMapper = new ObjectMapper();
 
