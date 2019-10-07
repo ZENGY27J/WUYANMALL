@@ -54,6 +54,25 @@ public class BaseRespVo<T> {
         baseRespVo.setErrno(402);
         return baseRespVo;
     }
+    public static BaseRespVo fail(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+
+        baseRespVo.setErrmsg("失败");
+        baseRespVo.setErrno(500);
+        return baseRespVo;
+    }
+    public static BaseRespVo systemError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("系统内部错误");
+        baseRespVo.setErrno(502);
+        return baseRespVo;
+    }
+    public static BaseRespVo payError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("订单不能支付");
+        baseRespVo.setErrno(742);
+        return baseRespVo;
+    }
 
     public static BaseRespVo badArgument(Object data) {
         BaseRespVo baseRespVo = new BaseRespVo();

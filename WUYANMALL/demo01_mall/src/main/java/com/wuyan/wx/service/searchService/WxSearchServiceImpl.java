@@ -19,13 +19,13 @@ public class WxSearchServiceImpl implements WxSearchService{
     @Autowired
     SearchHistoryMapper searchHistoryMapper;
     @Override
-    public SearchBean getSearchIndex() {
+    public SearchBean getSearchIndex(Integer userId) {
         SearchBean searchBean = new SearchBean();
         List<Keyword> defaultKeyword = keywordMapper.selectByExample(QueryUtils.getDefaultKeyword());
         searchBean.setDefaultKeyword(defaultKeyword.get(0));
         List<Keyword> hotKeyword = keywordMapper.selectByExample(QueryUtils.getHotKeyword());
         searchBean.setHotKeywordList(hotKeyword);
-        List<SearchHistory> searchHistories = searchHistoryMapper.selectByExample(QueryUtils.getSearchHistory(1));
+        List<SearchHistory> searchHistories = searchHistoryMapper.selectByExample(QueryUtils.getSearchHistory(userId));
         searchBean.setHistoryKeywordList(searchHistories);
         return searchBean;
     }
@@ -41,8 +41,8 @@ public class WxSearchServiceImpl implements WxSearchService{
     }
 
     @Override
-    public Boolean clearHistory() {
-        int i = searchHistoryMapper.deleteByExample(QueryUtils.getSearchHistory(1));
+    public Boolean clearHistory(Integer userId) {
+        int i = searchHistoryMapper.deleteByExample(QueryUtils.getSearchHistory(userId));
         boolean flag = false;
         if (i != 0){
             flag = true ;

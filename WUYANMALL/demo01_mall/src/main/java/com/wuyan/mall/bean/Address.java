@@ -65,7 +65,7 @@ public class Address {
         this.province = province;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

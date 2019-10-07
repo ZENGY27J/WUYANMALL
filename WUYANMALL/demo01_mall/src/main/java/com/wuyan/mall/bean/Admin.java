@@ -26,7 +26,7 @@ public class Admin {
 
     private Boolean deleted;
 
-    private Integer[] roleIds;
+    private String[] roleIds;
 
     public Integer getId() {
         return id;
@@ -100,11 +100,11 @@ public class Admin {
         this.deleted = deleted;
     }
 
-    public Integer[] getRoleIds() {
+    public String[] getRoleIds() {
         return roleIds;
     }
 
-    public void setRoleIds(Integer[] roleIds) {
+    public void setRoleIds(String[] roleIds) {
         this.roleIds = roleIds;
     }
 }
