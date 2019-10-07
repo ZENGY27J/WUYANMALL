@@ -8,8 +8,6 @@ public class CategoryBean {
     List<Category> categoryList;
     Category currentCategory;
     List<Category> currentSubCategory;
-<<<<<<< HEAD
-=======
     Category parentCategory;
     List<Category> brotherCategory;
 
@@ -28,7 +26,6 @@ public class CategoryBean {
     public void setBrotherCategory(List<Category> brotherCategory) {
         this.brotherCategory = brotherCategory;
     }
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 
     public List<Category> getCategoryList() {
         return categoryList;

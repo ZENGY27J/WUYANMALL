@@ -5,10 +5,10 @@ import com.wuyan.wx.bean.SearchBean;
 import java.util.List;
 
 public interface WxSearchService {
-    SearchBean getSearchIndex();
+    SearchBean getSearchIndex(Integer userId);
 
     List<String> getKeyword(String keyword);
 
-    Boolean clearHistory();
+    Boolean clearHistory(Integer userId);
 
 }

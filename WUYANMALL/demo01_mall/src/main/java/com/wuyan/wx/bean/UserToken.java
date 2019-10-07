@@ -1,10 +1,6 @@
 package com.wuyan.wx.bean;
 
-<<<<<<< HEAD
 import java.time.LocalDateTime;
-
-=======
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 /**
  * @Program: WUYANMALL
  * @Author: ZyEthan
@@ -12,14 +8,11 @@ import java.time.LocalDateTime;
  * @Date: 2019-10-05-15:54
  */
 public class UserToken {
-<<<<<<< HEAD
     Integer userId;
     String token;
     String sessionKey;
     LocalDateTime expireTime;
     LocalDateTime updateTime;
-=======
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     String username;
     String password;
 
@@ -38,7 +31,6 @@ public class UserToken {
     public void setPassword(String password) {
         this.password = password;
     }
-<<<<<<< HEAD
 
     public Integer getUserId() {
         return userId;
@@ -79,6 +71,5 @@ public class UserToken {
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
-=======
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
+
 }

@@ -26,7 +26,7 @@ public class WxGoodsServiceImpl implements WxGoodsService {
     @Autowired
     SearchHistoryMapper searchHistoryMapper;
     @Override
-    public Databean getGoodsList(PageInfo pageInfo) {
+    public Databean getGoodsList(PageInfo pageInfo, Integer userId) {
         List<Goods> goods = new ArrayList<>();
         long l = 0;
         if(pageInfo.getIsNew()) {
@@ -47,7 +47,7 @@ public class WxGoodsServiceImpl implements WxGoodsService {
             goodsMapper.countByExample(QueryUtils.getGoodsByKeyword(keyword));
             goods = goodsMapper.selectByExample(QueryUtils.getGoodsByKeyword(pageInfo));
             SearchHistory searchHistory = new SearchHistory();
-            searchHistory.setUserId(1);
+            searchHistory.setUserId(userId);
             searchHistory.setFrom("wx");
             searchHistory.setKeyword(keyword);
             searchHistory.setAddTime(MallUtil.getNowTime());

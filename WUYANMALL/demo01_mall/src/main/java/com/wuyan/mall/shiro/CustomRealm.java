@@ -4,6 +4,7 @@ import com.wuyan.mall.bean.*;
 import com.wuyan.mall.mapper.AdminMapper;
 import com.wuyan.mall.mapper.PermissionMapper;
 import com.wuyan.mall.mapper.RoleMapper;
+import com.wuyan.mall.vo.AdminInfo;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -46,14 +47,9 @@ public class CustomRealm extends AuthorizingRealm {
         // 通过subject执行login获得usernamePasswordToken中的username
         String principal = (String) authenticationToken.getPrincipal();
         // 根据principal（用户名）去数据库查询对应的密码
-        AdminExample adminExample = new AdminExample();
-        AdminExample.Criteria criteria = adminExample.createCriteria();
-        criteria.andUsernameEqualTo(principal);
-        List<Admin> admins = adminMapper.selectByExample(adminExample);
+        String password = adminMapper.queryPasswordByUsername(principal);
         // 判断list是否为空，若为空，n那么密码错误
-        Admin admin = admins.get(0);
-//        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal,admin.getPassword(),this.getName());
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal,admin.getPassword(),"CustomRealm");
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal,password,"CustomRealm");
         return authenticationInfo;
     }
 

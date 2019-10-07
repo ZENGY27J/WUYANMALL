@@ -1,29 +1,14 @@
 package com.wuyan.wx.service.personService.impl;
 
-<<<<<<< HEAD
 import com.wuyan.mall.bean.*;
 import com.wuyan.mall.mapper.*;
 import com.wuyan.wx.bean.*;
 import com.wuyan.wx.config.UserTokenManager;
-=======
-import com.wuyan.mall.bean.User;
-import com.wuyan.mall.bean.UserExample;
-import com.wuyan.mall.mapper.UserMapper;
-import com.wuyan.wx.bean.UserLoginInfo;
-import com.wuyan.wx.bean.UserToken;
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 import com.wuyan.wx.service.personService.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.util.*;
-=======
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 
 /**
  * @Program: WUYANMALL
@@ -35,7 +20,6 @@ import java.util.Map;
 public class PersonServiceImpl implements PersonService {
     @Autowired
     UserMapper userMapper;
-<<<<<<< HEAD
     @Autowired
     OrderMapper orderMapper;
     @Autowired
@@ -47,8 +31,6 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     RegionMapper regionMapper;
 
-=======
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     @Override
     public UserLoginInfo queryUser(UserToken userToken) {
         UserExample userExample = new UserExample();
@@ -56,7 +38,6 @@ public class PersonServiceImpl implements PersonService {
         criteria.andUsernameEqualTo(userToken.getUsername()).andPasswordEqualTo(userToken.getPassword());
         List<User> users = userMapper.selectByExample(userExample);
         User user = users.get(0);
-<<<<<<< HEAD
         int userId = user.getId();
         UserToken myuserToken = UserTokenManager.generateToken(userId);
         HashMap<String, String> userInfo = new HashMap<>();
@@ -353,14 +334,4 @@ public class PersonServiceImpl implements PersonService {
         int status = 401;//用户收货
         int i = orderMapper.updateStatus(id,status);
     }
-=======
-        HashMap<String,String> userInfo = new HashMap<>();
-        userInfo.put("nickName",user.getNickname());
-        userInfo.put("avatarUrl",user.getAvatar());
-        UserLoginInfo userLoginInfo = new UserLoginInfo();
-        userLoginInfo.setTokenExpire(user.getUpdateTime().toString());
-        userLoginInfo.setUserInfo(userInfo);
-        return userLoginInfo;
-    }
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 }

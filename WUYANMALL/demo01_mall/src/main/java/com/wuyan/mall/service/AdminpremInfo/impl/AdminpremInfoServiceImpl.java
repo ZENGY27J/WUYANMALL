@@ -6,6 +6,7 @@ import com.wuyan.mall.mapper.AdminMapper;
 import com.wuyan.mall.mapper.PermissionMapper;
 import com.wuyan.mall.mapper.RoleMapper;
 import com.wuyan.mall.service.AdminpremInfo.AdminpremInfoService;
+import com.wuyan.mall.vo.AdminInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,20 +32,19 @@ public class AdminpremInfoServiceImpl implements AdminpremInfoService {
         AdminExample adminExample = new AdminExample();
         AdminExample.Criteria criteria = adminExample.createCriteria();
         criteria.andUsernameEqualTo(principal);
-        List<Admin> admins = adminMapper.selectByExample(adminExample);
-        Admin admin = admins.get(0);
+        List<AdminInfo> admins = adminMapper.selectByExample(adminExample);
+        AdminInfo admin = admins.get(0);
         RoleExample roleExample = new RoleExample();
         RoleExample.Criteria roleExampleCriteria = roleExample.createCriteria();
         PermissionExample permissionExample = new PermissionExample();
         PermissionExample.Criteria permissionExampleCriteria = permissionExample.createCriteria();
         List<String> permissions = null;
         List<String> roles = null;
-        String[] roleIds = admin.getRoleIds();
+        Integer[] roleIds = admin.getRoleIds();
         for (int i = 0; i <roleIds.length ; i++) {
-            Integer roleId = Integer.valueOf(roleIds[i]);
-            Role role = roleMapper.selectByPrimaryKey(roleId);
+            Role role = roleMapper.selectByPrimaryKey(roleIds[i]);
             roles.add(role.getName());
-            permissionExampleCriteria.andRoleIdEqualTo(Integer.valueOf(roleIds[i]));
+            permissionExampleCriteria.andRoleIdEqualTo(roleIds[i]);
             List<Permission> permissionList = permissionMapper.selectByExample(permissionExample);
             if (permissionList != null) {
                 for (Permission permission : permissionList) {

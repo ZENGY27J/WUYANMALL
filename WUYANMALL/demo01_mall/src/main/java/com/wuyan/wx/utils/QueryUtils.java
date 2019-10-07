@@ -2,38 +2,27 @@ package com.wuyan.wx.utils;
 
 import com.github.pagehelper.PageHelper;
 import com.wuyan.mall.bean.*;
-<<<<<<< HEAD
-
-public class QueryUtils {
-=======
 import com.wuyan.mall.vo.PageInfo;
 
 public class QueryUtils {
     //分页
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     public static BrandExample getBrand(int size){
         PageHelper.startPage(1, size);
         return new BrandExample();
     }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     public static CategoryExample getCategory(int size,int pid){
         CategoryExample categoryExample = new CategoryExample();
         PageHelper.startPage(1,size);
         categoryExample.createCriteria().andPidEqualTo(pid);
         return categoryExample;
     }
-<<<<<<< HEAD
-=======
     public static CategoryExample getCategory(String level){
         CategoryExample categoryExample = new CategoryExample();
         categoryExample.createCriteria().andLevelEqualTo(level);
         return categoryExample;
     }
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     public static CategoryExample getCategoryById(int id) {
         CategoryExample categoryExample = new CategoryExample();
         categoryExample.createCriteria().andIdEqualTo(id);
@@ -43,16 +32,6 @@ public class QueryUtils {
         PageHelper.startPage(1, size);
         return new CouponExample();
     }
-<<<<<<< HEAD
-    public static GoodsExample getGoodsByCategoryId(int categoryId,int size){
-        GoodsExample goodsExample = new GoodsExample();
-        PageHelper.startPage(1,size);
-        return goodsExample;
-    }
-    public static GoodsExample getHotGoods(int size){
-        GoodsExample goodsExample = new GoodsExample();
-        PageHelper.startPage(1,size);
-=======
 
     public static CouponExample getCoupon(int page, int size) {
         PageHelper.startPage(page, size);
@@ -88,16 +67,12 @@ public class QueryUtils {
         PageHelper.startPage(pageInfo.getPage(),pageInfo.getSize(), pageInfo.getSort() + " " + pageInfo.getOrder());
         GoodsExample goodsExample = new GoodsExample();
         goodsExample.createCriteria().andIsNewEqualTo(true);
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
         return goodsExample;
     }
     public static GoodsExample getNewGoods(int size){
         GoodsExample goodsExample = new GoodsExample();
         PageHelper.startPage(1,size);
-<<<<<<< HEAD
-=======
         goodsExample.createCriteria().andIsNewEqualTo(true);
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
         return goodsExample;
     }
     public static GoodsExample getGoodsById(int id){
@@ -114,8 +89,6 @@ public class QueryUtils {
         PageHelper.startPage(1,size);
         return new TopicExample();
     }
-<<<<<<< HEAD
-=======
 
     public static KeywordExample getDefaultKeyword() {
         KeywordExample keywordExample = new KeywordExample();
@@ -158,5 +131,4 @@ public class QueryUtils {
         topicExample.createCriteria().andIdEqualTo(id);
         return topicExample;
     }
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 }

@@ -32,10 +32,9 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
-<<<<<<< HEAD
 
-//    @Select()
     List<String> queryPermissionsByUsername(@Param("username") String username);
-=======
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
+
+    @Select("select password from cskaoyan_mall_admin where username = #{username}")
+    String queryPasswordByUsername(@Param("username") String principal);
 }

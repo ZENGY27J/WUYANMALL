@@ -47,12 +47,6 @@ public class HomeServiceImpl implements HomeService{
         List<Coupon> couponList = couponMapper.selectByExample(QueryUtils.getCoupon(3));
         //获取指定类目下的商品
         List<Category> floorGoodsList = categoryMapper.selectByExample(QueryUtils.getCategory(4,0));
-<<<<<<< HEAD
-        for (Category category : floorGoodsList) {
-            int id = category.getId();
-            List<Goods> goods = goodsMapper.selectByExample(QueryUtils.getGoodsByCategoryId(id,2));
-            category.setGoodsList(goods);
-=======
 
         for (Category category : floorGoodsList) {
             int id = category.getId();
@@ -71,15 +65,11 @@ public class HomeServiceImpl implements HomeService{
                 }
             }
             category.setGoodsList(goodsList);
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
         }
         //获取团购信息
         List<GrouponRules> grouponRules = grouponRulesMapper.selectByExample(QueryUtils.getGroupon(5));
         List<GrouponList> grouponList = new ArrayList<>();
-<<<<<<< HEAD
-=======
 
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
         for (GrouponRules grouponRule : grouponRules) {
             GrouponList grouponList1 = new GrouponList();
             Integer goodsId = grouponRule.getGoodsId();
@@ -98,10 +88,7 @@ public class HomeServiceImpl implements HomeService{
         List<Goods> newGoodsList = goodsMapper.selectByExample(QueryUtils.getNewGoods(7));
         //获取专题
         List<Topic> topics = topicMapper.selectByExample(QueryUtils.getTopic(3));
-<<<<<<< HEAD
-=======
 
->>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
         Home home = new Home(banner, brandList, channel, couponList, floorGoodsList, grouponList, hotGoodsList, newGoodsList, topics);
         return home;
     }
