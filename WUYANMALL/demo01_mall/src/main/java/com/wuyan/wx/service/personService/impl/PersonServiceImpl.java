@@ -2,12 +2,14 @@ package com.wuyan.wx.service.personService.impl;
 
 import com.wuyan.mall.bean.*;
 import com.wuyan.mall.mapper.*;
+import com.wuyan.mall.util.MallUtil;
 import com.wuyan.wx.bean.*;
 import com.wuyan.wx.config.UserTokenManager;
 import com.wuyan.wx.service.personService.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -333,5 +335,20 @@ public class PersonServiceImpl implements PersonService {
         Integer id = order.getId();
         int status = 401;//用户收货
         int i = orderMapper.updateStatus(id,status);
+    }
+
+    @Override
+    public boolean registerUser(User user, HttpServletRequest httpServletRequest) {
+        user.setGender((byte) 0);
+        user.setLastLoginIp(httpServletRequest.getRemoteAddr());
+        user.setNickname(user.getUsername());
+        user.setStatus((byte) 0);
+        user.setUpdateTime(MallUtil.getNowTime());
+        int insert = userMapper.insert(user);
+        boolean flag = false;
+        if (insert != 0){
+            flag = true;
+        }
+        return flag;
     }
 }

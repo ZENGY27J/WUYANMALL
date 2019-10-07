@@ -1,12 +1,13 @@
 package com.wuyan.mall.bean;
 
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class User {
     private Integer id;
-
+    @Size(min = 6,message = "用户名或密码长度小于6位")
     private String username;
-
+    @Size(min = 6,message = "用户名或密码长度小于6位")
     private String password;
 
     private Byte gender;
