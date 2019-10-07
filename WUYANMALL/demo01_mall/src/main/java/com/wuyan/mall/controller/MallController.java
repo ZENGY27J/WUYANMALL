@@ -19,6 +19,7 @@ import java.util.Map;
  */
 @RestController
 public class MallController {
+    String s = "^[0-9]*$";
     @Autowired
     MallService mallService;
 
@@ -39,6 +40,11 @@ public class MallController {
      */
     @RequestMapping("admin/brand/list")
     public BaseRespVo brandList(PageInfo pageInfo){
+        if(pageInfo.getId() != null && !"".equals(pageInfo.getId())){
+            if (!pageInfo.getId().matches(s)){
+                return BaseRespVo.error(null);
+            }
+        }
         MallPage brands =mallService.getBrand(pageInfo);
         return BaseRespVo.ok(brands);
     }
@@ -135,6 +141,11 @@ public class MallController {
      */
     @RequestMapping("admin/order/list")
     public BaseRespVo orderList(PageInfo pageInfo){
+        if (pageInfo.getUserId() != null && !"".equals(pageInfo.getUserId())){
+            if (!pageInfo.getUserId().matches(s)){
+                return BaseRespVo.error(null);
+            }
+        }
         MallPage orders = mallService.getOrder(pageInfo);
         return BaseRespVo.ok(orders);
     }

@@ -1,5 +1,7 @@
 package com.wuyan.mall.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,15 +13,16 @@ public class GrouponRules {
     private String goodsName;
 
     private String picUrl;
-
+    //优惠金额
     private BigDecimal discount;
-
+    //达到优惠条件人数
     private Integer discountMember;
 
     private Date addTime;
 
     private Date updateTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date expireTime;
 
     private Boolean deleted;

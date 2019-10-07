@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, desc, enabled, add_time, update_time, deleted
+    id, name, `desc`, enabled, add_time, update_time, deleted
   </sql>
   <select id="selectByExample" parameterType="com.wuyan.mall.bean.RoleExample" resultMap="BaseResultMap">
     select
@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from cskaoyan_mall_role
     where id = #{id,jdbcType=INTEGER}
@@ -102,14 +102,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wuyan.mall.bean.Role">
-    insert into cskaoyan_mall_role (id, name, desc, 
-      enabled, add_time, update_time, 
+    insert into cskaoyan_mall_role (id, name, desc,
+      enabled, add_time, update_time,
       deleted)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
-      #{enabled,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR},
+      #{enabled,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
       #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.wuyan.mall.bean.Role">
+    <selectKey keyProperty="id" order="AFTER" resultType="int" keyColumn="id">
+      select last_insert_id() as id
+    </selectKey>
     insert into cskaoyan_mall_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -119,7 +122,7 @@
         name,
       </if>
       <if test="desc != null">
-        desc,
+        `desc`,
       </if>
       <if test="enabled != null">
         enabled,

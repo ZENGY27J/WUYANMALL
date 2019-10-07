@@ -28,46 +28,16 @@ public class PromotionPageInfo {
     // 用户id
     String userId;
     // 商品id
-    String goodsId;
+    Integer GoodsId;
+    String title;
+    String subtitle;
 
-    public String getGoodsId() {
-        return goodsId;
+    public Integer getGoodsId() {
+        return GoodsId;
     }
 
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getCouponId() {
-        return couponId;
-    }
-
-    public void setCouponId(String couponId) {
-        this.couponId = couponId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setGoodsId(Integer goodsId) {
+        GoodsId = goodsId;
     }
 
     public int getPage() {
@@ -116,5 +86,53 @@ public class PromotionPageInfo {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCouponId() {
+        return couponId;
+    }
+
+    public void setCouponId(String couponId) {
+        this.couponId = couponId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 }

@@ -54,6 +54,15 @@ public class MallServiceImpl implements MallService {
         return new MallPage(l,brands);
     }
 
+    /*zyy新增的代码，在goodsservice中使用*/
+    @Override
+    public List<Brand> getBrand(){
+        BrandExample brandExample=new BrandExample();
+        List<Brand> brands=brandMapper.selectByExample(brandExample);
+        return brands;
+    }
+
+
     @Override
     public Brand addBrand(Brand brand) {
         brand.setAddTime(MallUtil.getNowTime());
@@ -100,6 +109,10 @@ public class MallServiceImpl implements MallService {
 
     @Override
     public void deleteCategory(Category category) {
+        List<Category> children = category.getChildren();
+        for (Category child : children) {
+            categoryMapper.deleteByExample(MallUtil.getCategoryById(child.getId()));
+        }
         categoryMapper.deleteByExample(MallUtil.getCategoryById(category.getId()));
     }
 

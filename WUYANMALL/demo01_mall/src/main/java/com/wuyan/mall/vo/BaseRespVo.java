@@ -1,15 +1,20 @@
 package com.wuyan.mall.vo;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @Program: WUYANMALL
  * @Author: ZyEthan
  * @Description: 基本返回
  * @Date: 2019-09-30-12:10
  */
+@Component
 public class BaseRespVo<T> {
     T data;
     String errmsg;
     int errno;
+
+
 
     public T getData() {
         return data;
@@ -34,6 +39,7 @@ public class BaseRespVo<T> {
     public void setErrno(int errno) {
         this.errno = errno;
     }
+
     public static BaseRespVo ok(Object data) {
         BaseRespVo baseRespVo = new BaseRespVo();
         baseRespVo.setData(data);
@@ -65,6 +71,22 @@ public class BaseRespVo<T> {
         BaseRespVo baseRespVo = new BaseRespVo();
         baseRespVo.setErrmsg("订单不能支付");
         baseRespVo.setErrno(742);
+        return baseRespVo;
+    }
+
+    public static BaseRespVo badArgument(Object data) {
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setData(data);
+        baseRespVo.setErrmsg("参数不对");
+        baseRespVo.setErrno(401);
+        return baseRespVo;
+    }
+
+    public static BaseRespVo updatedDataFiled(Object data) {
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setData(data);
+        baseRespVo.setErrmsg("更新数据失败");
+        baseRespVo.setErrno(505);
         return baseRespVo;
     }
 

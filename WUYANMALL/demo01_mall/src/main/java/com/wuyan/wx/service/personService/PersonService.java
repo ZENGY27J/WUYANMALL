@@ -1,10 +1,15 @@
 package com.wuyan.wx.service.personService;
 
+<<<<<<< HEAD
 import com.wuyan.mall.bean.Order;
 import com.wuyan.mall.bean.Region;
 import com.wuyan.wx.bean.*;
 
 import java.util.List;
+=======
+import com.wuyan.wx.bean.UserLoginInfo;
+import com.wuyan.wx.bean.UserToken;
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 
 /**
  * 个人中心业务层
@@ -12,6 +17,7 @@ import java.util.List;
 public interface PersonService {
 
     UserLoginInfo queryUser(UserToken userToken);
+<<<<<<< HEAD
 
     UserOrderStatus getUserOrderStatus(Integer userId);
 
@@ -32,4 +38,6 @@ public interface PersonService {
     void orderCancel(Order order);
 
     void orderConfirm(Order order);
+=======
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
 }

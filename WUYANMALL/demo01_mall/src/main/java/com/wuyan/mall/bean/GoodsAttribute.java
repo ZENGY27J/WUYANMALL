@@ -15,7 +15,7 @@ public class GoodsAttribute {
 
     private Date updateTime;
 
-    private Boolean deleted;
+    private Boolean deleted=false;
 
     public Integer getId() {
         return id;

@@ -3,8 +3,11 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.Storage;
 import com.wuyan.mall.bean.StorageExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface StorageMapper {
     long countByExample(StorageExample example);
 

@@ -11,7 +11,7 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
-    <result column="role_ids" jdbcType="VARCHAR" property="roleIds" />
+    <result column="role_ids" jdbcType="VARCHAR" property="roleIds" typeHandler="com.wuyan.mall.mybatis.TransferIntegerArrayHandler"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,10 +72,22 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
+<<<<<<< HEAD
     id, username, password, last_login_ip, last_login_time, avatar, add_time, update_time,
     deleted, role_ids
+=======
+    id, username, avatar, role_ids
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
   </sql>
-  <select id="selectByExample" parameterType="com.wuyan.mall.bean.AdminExample" resultMap="BaseResultMap">
+
+  <resultMap id="AdminResultMap" type="com.wuyan.mall.vo.AdminInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="role_ids" jdbcType="VARCHAR" property="roleIds" typeHandler="com.wuyan.mall.mybatis.TransferIntegerArrayHandler"/>
+  </resultMap>
+
+  <select id="selectByExample" resultMap="AdminResultMap">
     select
     <if test="distinct">
       distinct
@@ -113,9 +125,16 @@
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT},
+<<<<<<< HEAD
       #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander})
+=======
+      #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferIntegerArrayHandler})
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
   </insert>
   <insert id="insertSelective" parameterType="com.wuyan.mall.bean.Admin">
+    <selectKey keyProperty="id" order="AFTER" resultType="int" keyColumn="id">
+      select last_insert_id() as id
+    </selectKey>
     insert into cskaoyan_mall_admin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -178,7 +197,11 @@
         #{deleted,jdbcType=BIT},
       </if>
       <if test="roleIds != null">
+<<<<<<< HEAD
         #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
+=======
+        #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferIntegerArrayHandler},
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
       </if>
     </trim>
   </insert>
@@ -219,7 +242,11 @@
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
       <if test="record.roleIds != null">
+<<<<<<< HEAD
         role_ids = #{record.roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
+=======
+        role_ids = #{record.roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferIntegerArrayHandler},
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
       </if>
     </set>
     <if test="_parameter != null">
@@ -229,6 +256,7 @@
   <update id="updateByExample" parameterType="map">
     update cskaoyan_mall_admin
     set id = #{record.id,jdbcType=INTEGER},
+<<<<<<< HEAD
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
@@ -238,6 +266,17 @@
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
       role_ids = #{record.roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander}
+=======
+    username = #{record.username,jdbcType=VARCHAR},
+    password = #{record.password,jdbcType=VARCHAR},
+    last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+    last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+    avatar = #{record.avatar,jdbcType=VARCHAR},
+    add_time = #{record.addTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    deleted = #{record.deleted,jdbcType=BIT},
+    role_ids = #{record.roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferIntegerArrayHandler}
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -270,7 +309,11 @@
         deleted = #{deleted,jdbcType=BIT},
       </if>
       <if test="roleIds != null">
+<<<<<<< HEAD
         role_ids = #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
+=======
+        role_ids = #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferIntegerArrayHandler},
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -285,7 +328,11 @@
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
+<<<<<<< HEAD
       role_ids = #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander}
+=======
+      role_ids = #{roleIds,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferIntegerArrayHandler}
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

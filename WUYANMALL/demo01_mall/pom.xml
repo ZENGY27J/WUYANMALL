@@ -32,7 +32,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
+            <version>5.1.17</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -56,6 +56,7 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
         </dependency>
+<<<<<<< HEAD
         <!--Shiro对spring的支持-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -71,6 +72,31 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
+=======
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.12</version>
+        </dependency>
+
+
+
+
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
         </dependency>
     </dependencies>
 

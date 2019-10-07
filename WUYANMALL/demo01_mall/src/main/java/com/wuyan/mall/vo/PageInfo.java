@@ -1,5 +1,4 @@
 package com.wuyan.mall.vo;
-
 import java.util.List;
 
 /**
@@ -13,6 +12,10 @@ public class PageInfo {
     int page;
     // 页面大小
     int limit;
+
+    //limit的别名
+    int size;
+
     // 根据对应列排序
     String sort;
     // 排序方式
@@ -41,6 +44,44 @@ public class PageInfo {
     List<Short> orderStatusArray;
 
     String orderSn;
+
+    boolean isHot;
+
+    boolean isNew;
+
+    int categoryId;
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public boolean getIsHot() {
+        return isHot;
+    }
+
+    public void setIsHot(boolean isHot) {
+        this.isHot = isHot;
+    }
+
+    public boolean getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(boolean isNew) {
+        this.isNew = isNew;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     public List<Short> getOrderStatusArray() {
         return orderStatusArray;
@@ -137,6 +178,7 @@ public class PageInfo {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
     public int getPage() {
         return page;
     }

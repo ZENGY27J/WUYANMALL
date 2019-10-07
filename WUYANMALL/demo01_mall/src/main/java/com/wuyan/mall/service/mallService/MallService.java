@@ -51,4 +51,6 @@ public interface MallService {
     void deleteKeyword(Keyword keyword);
 
     Keyword updateKeyword(Keyword keyword);
+
+    List<Brand> getBrand();
 }

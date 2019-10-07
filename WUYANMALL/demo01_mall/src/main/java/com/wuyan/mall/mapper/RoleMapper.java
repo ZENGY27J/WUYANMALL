@@ -3,8 +3,11 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.Role;
 import com.wuyan.mall.bean.RoleExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface RoleMapper {
     long countByExample(RoleExample example);
 

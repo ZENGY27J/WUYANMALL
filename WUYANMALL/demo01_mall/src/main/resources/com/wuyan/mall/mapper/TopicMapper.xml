@@ -76,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, subtitle, price, read_count, pic_url, sort_order, goods, add_time, update_time, 
-    deleted
+    id, title, subtitle, price, read_count, pic_url, sort_order, goods, add_time, update_time,
+    deleted,content
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -113,7 +113,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -131,14 +131,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wuyan.mall.bean.Topic">
-    insert into cskaoyan_mall_topic (id, title, subtitle, 
-      price, read_count, pic_url, 
-      sort_order, goods, add_time, 
+    insert into cskaoyan_mall_topic (id, title, subtitle,
+      price, read_count, pic_url,
+      sort_order, goods, add_time,
       update_time, deleted, content
       )
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DECIMAL}, #{readCount,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, 
-      #{sortOrder,jdbcType=INTEGER}, #{goods,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
+      #{price,jdbcType=DECIMAL}, #{readCount,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR},
+      #{sortOrder,jdbcType=INTEGER}, #{goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander}, #{addTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -205,7 +205,7 @@
         #{sortOrder,jdbcType=INTEGER},
       </if>
       <if test="goods != null">
-        #{goods,jdbcType=VARCHAR},
+        #{goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -252,7 +252,7 @@
         sort_order = #{record.sortOrder,jdbcType=INTEGER},
       </if>
       <if test="record.goods != null">
-        goods = #{record.goods,jdbcType=VARCHAR},
+        goods = #{record.goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
@@ -280,7 +280,7 @@
       read_count = #{record.readCount,jdbcType=VARCHAR},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
       sort_order = #{record.sortOrder,jdbcType=INTEGER},
-      goods = #{record.goods,jdbcType=VARCHAR},
+      goods = #{record.goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
@@ -298,7 +298,7 @@
       read_count = #{record.readCount,jdbcType=VARCHAR},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
       sort_order = #{record.sortOrder,jdbcType=INTEGER},
-      goods = #{record.goods,jdbcType=VARCHAR},
+      goods = #{record.goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT}
@@ -328,7 +328,7 @@
         sort_order = #{sortOrder,jdbcType=INTEGER},
       </if>
       <if test="goods != null">
-        goods = #{goods,jdbcType=VARCHAR},
+        goods = #{goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -353,7 +353,7 @@
       read_count = #{readCount,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=INTEGER},
-      goods = #{goods,jdbcType=VARCHAR},
+      goods = #{goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
@@ -368,7 +368,7 @@
       read_count = #{readCount,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=INTEGER},
-      goods = #{goods,jdbcType=VARCHAR},
+      goods = #{goods,jdbcType=VARCHAR,typeHandler=com.wuyan.mall.mybatis.TransferStringArreyHander},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT}

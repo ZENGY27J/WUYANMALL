@@ -1,7 +1,6 @@
 package com.wuyan.mall.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 import java.util.List;
 

@@ -15,7 +15,11 @@ public class UserLoginInfo {
     Map<String,String> userInfo;
     // token到期时间
     String tokenExpire;
+<<<<<<< HEAD
     // user的token信息，包含userId
+=======
+    // session的id
+>>>>>>> d6f0215696f85cddb69ea3101feb08d8d0932faf
     String token;
 
     public Map<String, String> getUserInfo() {
