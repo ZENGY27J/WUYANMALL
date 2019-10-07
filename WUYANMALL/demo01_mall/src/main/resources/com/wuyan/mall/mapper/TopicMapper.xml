@@ -77,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, title, subtitle, price, read_count, pic_url, sort_order, goods, add_time, update_time,
-    deleted
+    deleted,content
   </sql>
   <sql id="Blob_Column_List">
     content
