@@ -45,7 +45,41 @@ public class PageInfo {
 
     String orderSn;
 
+<<<<<<< HEAD
 
+=======
+    int size;
+
+    boolean isHot;
+
+    boolean isNew;
+
+    int categoryId;
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public boolean getIsHot() {
+        return isHot;
+    }
+
+    public void setIsHot(boolean isHot) {
+        this.isHot = isHot;
+    }
+
+    public boolean getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(boolean isNew) {
+        this.isNew = isNew;
+    }
+>>>>>>> 896c79c6f1d930747bc2abeb550aab15e6eb4138
 
     public int getSize() {
         return size;

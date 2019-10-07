@@ -50,8 +50,21 @@ public class HomeServiceImpl implements HomeService{
 
         for (Category category : floorGoodsList) {
             int id = category.getId();
-            List<Goods> goods = goodsMapper.selectByExample(QueryUtils.getGoodsByCategoryId(id,2));
-            category.setGoodsList(goods);
+            List<Category> categories = categoryMapper.selectByExample(QueryUtils.getCategory(0, id));
+            List<Goods> goodsList = new ArrayList<>();
+            for (Category category1 : categories) {
+                Integer id1 = category1.getId();
+                List<Goods> goods = goodsMapper.selectByExample(QueryUtils.getGoodsByCategoryId(id1,0));
+                for (Goods good : goods) {
+                    if (good != null){
+                        goodsList.add(good);
+                    }
+                    if (goodsList.size() >= 2){
+                        break;
+                    }
+                }
+            }
+            category.setGoodsList(goodsList);
         }
         //获取团购信息
         List<GrouponRules> grouponRules = grouponRulesMapper.selectByExample(QueryUtils.getGroupon(5));
