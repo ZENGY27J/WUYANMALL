@@ -1,5 +1,7 @@
 package com.wuyan.mall.bean;
 
+import com.wuyan.wx.bean.HandleOption;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -56,6 +58,26 @@ public class Order {
     private Date updateTime;
 
     private Boolean deleted;
+
+    HandleOption handleOption;
+
+    String orderStatusText;
+
+    public String getOrderStatusText() {
+        return orderStatusText;
+    }
+
+    public void setOrderStatusText(String orderStatusText) {
+        this.orderStatusText = orderStatusText;
+    }
+
+    public HandleOption getHandleOption() {
+        return handleOption;
+    }
+
+    public void setHandleOption(HandleOption handleOption) {
+        this.handleOption = handleOption;
+    }
 
     public Integer getId() {
         return id;

@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 @Mapper
 public interface RegionMapper {
     long countByExample(RegionExample example);
@@ -29,4 +31,7 @@ public interface RegionMapper {
     int updateByPrimaryKeySelective(Region record);
 
     int updateByPrimaryKey(Region record);
+
+    @Select("select name from cskaoyan_mall_region where code = #{code}")
+    String queryNameByCode(@Param("code") int code);
 }

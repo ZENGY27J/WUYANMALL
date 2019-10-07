@@ -1,9 +1,9 @@
 package com.wuyan.wx.controller;
 
 import com.wuyan.mall.vo.BaseRespVo;
-import com.wuyan.wx.bean.UserLoginInfo;
-import com.wuyan.wx.bean.UserToken;
+import com.wuyan.wx.bean.*;
 import com.wuyan.wx.service.personService.PersonService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +33,18 @@ public class UserLoginController {
             BaseRespVo.error(null);
         }
         UserLoginInfo userLoginInfo = personService.queryUser(userToken);
-
-        //shiro整合时修改
-        //Serializable id = SecurityUtils.getSubject().getSession().getId();
-
-        userLoginInfo.setToken("94675545-4cfb-496a-b1b8-702838c26f8a");
-
         BaseRespVo ok = BaseRespVo.ok(userLoginInfo);
         return ok;
     }
 
+    @RequestMapping("/auth/logout")
+    public BaseRespVo logout() {
+        return BaseRespVo.ok(null);
+    }
+
+
+    @RequestMapping("/auth/bindPhone")
+    public BaseRespVo bindPhone(@RequestBody BindPhone bindPhone) {
+        return BaseRespVo.systemError();
+    }
 }

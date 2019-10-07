@@ -5,7 +5,7 @@ import com.wuyan.wx.bean.CategoryBean;
 import com.wuyan.wx.bean.Databean;
 
 public interface WxGoodsService {
-    Databean getGoodsList(PageInfo pageInfo);
+    Databean getGoodsList(PageInfo pageInfo, Integer userId);
 
     CategoryBean getGoodsCategory(int id);
 }
