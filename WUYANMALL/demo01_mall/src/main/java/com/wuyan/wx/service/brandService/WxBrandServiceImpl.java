@@ -26,4 +26,9 @@ public class WxBrandServiceImpl implements WxBrandService {
         databean.setBrandList(brands);
         return databean;
     }
+
+    @Override
+    public Brand getBrandDetail(int id) {
+        return brandMapper.selectByPrimaryKey(id);
+    }
 }

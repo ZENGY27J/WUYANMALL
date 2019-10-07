@@ -106,7 +106,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wuyan.mall.bean.Comment">
+  <insert id="insert" parameterType="com.wuyan.mall.bean.Comment" keyProperty="id" useGeneratedKeys="true">
     insert into cskaoyan_mall_comment (id, value_id, `type`,
       content, user_id, has_picture,
       pic_urls, star, add_time,

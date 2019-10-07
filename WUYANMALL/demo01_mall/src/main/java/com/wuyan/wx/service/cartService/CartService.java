@@ -3,15 +3,18 @@ package com.wuyan.wx.service.cartService;
 import com.wuyan.mall.bean.Accept.AcceptCartChecks;
 import com.wuyan.mall.bean.Cart;
 import com.wuyan.mall.vo.IndexCartVo;
+import com.wuyan.mall.vo.WxCartCheckoutVo;
 
 public interface CartService {
-    IndexCartVo showCart(Integer userId);
+    IndexCartVo showCart(Integer userId);//显示购物车
 
-    IndexCartVo checkGoods(AcceptCartChecks acceptCartChecks, Integer userId);
+    IndexCartVo checkGoods(AcceptCartChecks acceptCartChecks, Integer userId);//选择购物车的商品
 
-    void update(Cart cart, Integer userId);
+    void update(Cart cart, Integer userId);//更新购物车
 
-    void insert(Cart cart, Integer userId);
+    void insert(Cart cart, Integer userId);//加入购物车
 
-    int showGoodsCount(Integer userId);
+    int showGoodsCount(Integer userId);//显示购物车商品数量
+
+    WxCartCheckoutVo checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId);//下单
 }

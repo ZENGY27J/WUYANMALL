@@ -1,14 +1,16 @@
 package com.wuyan.wx.service.cartService;
 
+import com.wuyan.mall.bean.*;
 import com.wuyan.mall.bean.Accept.AcceptCartChecks;
-import com.wuyan.mall.bean.Cart;
-import com.wuyan.mall.bean.CartExample;
-import com.wuyan.mall.mapper.CartMapper;
+import com.wuyan.mall.mapper.*;
 import com.wuyan.mall.vo.IndexCartVo;
+import com.wuyan.mall.vo.WxCartCheckoutVo;
+import com.wuyan.wx.service.couponService.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +19,19 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     CartMapper cartMapper;
+
+    @Autowired
+    GrouponMapper grouponMapper;
+
+    @Autowired
+    GrouponRulesMapper grouponRulesMapper;
+
+    @Autowired
+    CouponMapper couponMapper;
+
+    @Autowired
+    AddressMapper addressMapper;
+
 
     //显示购物车商品状态
     @Override
@@ -98,5 +113,47 @@ public class CartServiceImpl implements CartService {
     @Override
     public int showGoodsCount(Integer userId) {
         return showCart(userId).getCarts().size();
+    }
+
+    @Override
+    public WxCartCheckoutVo checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId) {
+        WxCartCheckoutVo wxCartCheckoutVo = new WxCartCheckoutVo();
+        List<Cart> checkedGoodsList = new ArrayList<>();
+        BigDecimal goodsTotalPrice = new BigDecimal(0);
+        BigDecimal freightPrice = new BigDecimal(0);
+        BigDecimal couponPrice = couponMapper.selectByPrimaryKey(Integer.parseInt(couponId)).getDiscount();
+
+
+        CartExample cartExample = new CartExample();
+        CartExample.Criteria criteria = cartExample.createCriteria();
+        //找出当前用户被选中的商品
+        criteria.andUserIdEqualTo(userId).andCheckedEqualTo(true);
+
+        checkedGoodsList = cartMapper.selectByExample(cartExample);
+
+        for (Cart cart : checkedGoodsList) {
+            //商品总价等于所有 被选中商品单价 乘上 被选中商品的数量 之和
+            goodsTotalPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
+        }
+        //找到团购规则对应的团购折扣
+        GrouponRules grouponRules = grouponRulesMapper.selectByPrimaryKey(Integer.parseInt(grouponRulesId));
+        BigDecimal discount = grouponRules.getDiscount();
+
+        Address address = addressMapper.selectByPrimaryKey(Integer.parseInt(addressId));
+
+
+        wxCartCheckoutVo.setGrouponRulesId(Integer.parseInt(grouponRulesId));
+        wxCartCheckoutVo.setGrouponPrice(discount);
+        wxCartCheckoutVo.setAddress(address);
+        wxCartCheckoutVo.setActualPrice(goodsTotalPrice.subtract(discount));
+        //订单总价等于商品总价 + 运费 - 优惠金额 - 折扣金额
+        wxCartCheckoutVo.setOrderTotalPrice(goodsTotalPrice.add(freightPrice).subtract(couponPrice).subtract(discount));
+        wxCartCheckoutVo.setCouponPrice(couponPrice);
+        wxCartCheckoutVo.setCouponId(Integer.parseInt(couponId));
+        wxCartCheckoutVo.setCheckedGoodsList(checkedGoodsList);
+        wxCartCheckoutVo.setGoodsTotalPrice(goodsTotalPrice);
+        wxCartCheckoutVo.setAddressId(Integer.parseInt(addressId));
+
+        return wxCartCheckoutVo;
     }
 }
