@@ -6,15 +6,20 @@ import com.github.pagehelper.PageInfo;
 import com.wuyan.mall.bean.Accept.DeleteComment;
 import com.wuyan.mall.bean.Comment;
 import com.wuyan.mall.bean.CommentExample;
+import com.wuyan.mall.bean.Goods;
 import com.wuyan.mall.bean.User;
 import com.wuyan.mall.mapper.CommentMapper;
 import com.wuyan.mall.mapper.UserMapper;
 import com.wuyan.mall.vo.*;
+import com.wuyan.wx.vo.CommentCountVo;
+import com.wuyan.wx.vo.CommentVo;
+import com.wuyan.wx.vo.SingleCommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import java.util.List;
 
 @Service
@@ -29,11 +34,11 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     BaseRespVo baseRespVo;
 
+
     @Override
     public BaseRespVo listAllComment(int page, int limit) {
         //新建view Object
         ListCommentVo listCommentVo = new ListCommentVo();
-
 
         //查找
         CommentExample commentExample=new CommentExample();
@@ -174,4 +179,72 @@ public class CommentServiceImpl implements CommentService {
         return comment;
     }
 
+
+     /** 根据goodsId查询所有的评价
+     * 并且把查出的每一个评价包装到SingleCommentVo中
+     * 而且只要前两个
+     * 直接返回commentVo
+     * @param goodsId
+     * @return
+     */
+    @Override
+    public CommentVo selectByGoodsId(int goodsId) {
+        CommentExample commentExample = new CommentExample();
+        CommentExample.Criteria criteria = commentExample.createCriteria();
+        criteria.andValueIdEqualTo(goodsId);
+        //分页只要前两个
+        PageHelper.startPage(1,2);
+        List<Comment> comments = commentMapper.selectByExample(commentExample);
+        //查询goods的总数
+        PageInfo<Comment> commentPageInfo = new PageInfo(comments);
+        long total = commentPageInfo.getTotal();
+        //new 要返回的commentVo
+        CommentVo commentVo = new CommentVo();
+        commentVo.setCount(total);
+
+        ArrayList<SingleCommentVo> singleCommentVos = new ArrayList<>();
+        for (Comment comment :comments) {
+            SingleCommentVo singleCommentVo = new SingleCommentVo();
+            singleCommentVo.setAddTime(comment.getAddTime());
+            singleCommentVo.setContent(comment.getContent());
+            singleCommentVo.setId(comment.getId());
+            singleCommentVo.setPicList(comment.getPicUrls());
+            //搜索用户昵称和头想也传入singlecommentVo中
+            User user = userMapper.selectByPrimaryKey(comment.getUserId());
+            singleCommentVo.setAvatar(user.getAvatar());
+            singleCommentVo.setNickname(user.getNickname());
+            singleCommentVos.add(singleCommentVo);
+        }
+        commentVo.setData(singleCommentVos);
+        return commentVo;
+    }
+
+    /**
+     * 根据valueid 和 type 查找评论总数和 有图 的评论总数
+     * @param valueId
+     * @param type
+     * @return CommentCountVo
+     */
+    @Override
+    public CommentCountVo countComment(int valueId, int type) {
+        //new 所要返回的commentCountVo
+        CommentCountVo commentCountVo = new CommentCountVo();
+        //根据valueId和type查找所有符合条件的评价
+        CommentExample commentExample = new CommentExample();
+        CommentExample.Criteria criteria = commentExample.createCriteria();
+        criteria.andValueIdEqualTo(valueId).andTypeEqualTo((byte) type);
+
+        List<Comment> comments = commentMapper.selectByExample(commentExample);
+        commentCountVo.setAllCount(comments.size());
+        //查看有图的
+        int count=0;
+        for (Comment comment :comments) {
+            if (comment.getHasPicture()){
+                count++;
+            }
+        }
+        commentCountVo.setHasPicCount(count);
+
+        return commentCountVo;
+    }
 }

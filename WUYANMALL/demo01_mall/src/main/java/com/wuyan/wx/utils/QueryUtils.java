@@ -125,4 +125,10 @@ public class QueryUtils {
         goodsExample.createCriteria().andKeywordsLike("%" + pageInfo.getKeyword() + "%");
         return goodsExample;
     }
+
+    public static TopicExample getTopicById(int id) {
+        TopicExample topicExample = new TopicExample();
+        topicExample.createCriteria().andIdEqualTo(id);
+        return topicExample;
+    }
 }

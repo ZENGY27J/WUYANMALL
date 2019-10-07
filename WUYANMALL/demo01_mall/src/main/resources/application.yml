@@ -5,7 +5,6 @@ pagehelper:
   helper-dialect: mysql
 
 
-
 #文件上传地址
 file.rootPath: E:/img/
 
@@ -26,4 +25,5 @@ logging:
 
 mybatis:
   type-handlers-package: com.wuyan.mall.mabatis
+
 

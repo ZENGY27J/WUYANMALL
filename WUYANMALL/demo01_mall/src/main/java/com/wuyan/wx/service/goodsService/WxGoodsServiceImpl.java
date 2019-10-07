@@ -2,8 +2,11 @@ package com.wuyan.wx.service.goodsService;
 
 import com.wuyan.mall.bean.Category;
 import com.wuyan.mall.bean.Goods;
+import com.wuyan.mall.bean.SearchHistory;
 import com.wuyan.mall.mapper.CategoryMapper;
 import com.wuyan.mall.mapper.GoodsMapper;
+import com.wuyan.mall.mapper.SearchHistoryMapper;
+import com.wuyan.mall.util.MallUtil;
 import com.wuyan.mall.vo.PageInfo;
 import com.wuyan.wx.bean.CategoryBean;
 import com.wuyan.wx.bean.Databean;
@@ -20,6 +23,8 @@ public class WxGoodsServiceImpl implements WxGoodsService {
     GoodsMapper goodsMapper;
     @Autowired
     CategoryMapper categoryMapper;
+    @Autowired
+    SearchHistoryMapper searchHistoryMapper;
     @Override
     public Databean getGoodsList(PageInfo pageInfo) {
         List<Goods> goods = new ArrayList<>();
@@ -41,6 +46,13 @@ public class WxGoodsServiceImpl implements WxGoodsService {
         if(keyword != null && !"".equals(keyword)){
             goodsMapper.countByExample(QueryUtils.getGoodsByKeyword(keyword));
             goods = goodsMapper.selectByExample(QueryUtils.getGoodsByKeyword(pageInfo));
+            SearchHistory searchHistory = new SearchHistory();
+            searchHistory.setUserId(1);
+            searchHistory.setFrom("wx");
+            searchHistory.setKeyword(keyword);
+            searchHistory.setAddTime(MallUtil.getNowTime());
+            searchHistory.setUpdateTime(MallUtil.getNowTime());
+            searchHistoryMapper.insert(searchHistory);
         }
         List<Category> categories = categoryMapper.selectByExample(QueryUtils.getCategory("L2"));
         Databean databean = new Databean();
