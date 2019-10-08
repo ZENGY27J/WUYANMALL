@@ -1,6 +1,9 @@
 package com.wuyan.mall.config;
 
-import com.wuyan.mall.shiro.CustomRealm;
+import com.wuyan.mall.shiro.AdminRealm;
+import com.wuyan.mall.shiro.CustomRealmAuthenticator;
+import com.wuyan.mall.shiro.WxRealm;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -11,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Properties;
@@ -52,13 +56,28 @@ public class CustomShiroConfig {
     }
 
     /*securityManager*/
+//    @Bean
+//    public DefaultWebSecurityManager securityManager(AdminRealm realm, DefaultWebSessionManager sessionManager){
+//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+//        securityManager.setRealm(realm);
+//        securityManager.setSessionManager(sessionManager);
+//        return securityManager;
+//    }
     @Bean
-    public DefaultWebSecurityManager securityManager(CustomRealm realm,DefaultWebSessionManager sessionManager){
+    public DefaultWebSecurityManager securityManager(@Qualifier("adminRealm") AdminRealm adminRealm,
+                                                     @Qualifier("wxRealm") WxRealm wxRealm,
+                                                     DefaultWebSessionManager sessionManager,
+                                                     CustomRealmAuthenticator customRealmAuthenticator){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(realm);
+        ArrayList<Realm> realms = new ArrayList<>();
+        realms.add(adminRealm);
+        realms.add(wxRealm);
+        securityManager.setRealms(realms);
+        securityManager.setAuthenticator(customRealmAuthenticator);
         securityManager.setSessionManager(sessionManager);
         return securityManager;
     }
+
     /*自定义realm*/
 
     /*声明式使用鉴权注解的开关*/
@@ -85,4 +104,20 @@ public class CustomShiroConfig {
         return mallSessionManager;
     }
 
+    /**
+     * 自定义的认证器
+     * @param adminRealm
+     * @param wxRealm
+     * @return
+     */
+    @Bean
+    public CustomRealmAuthenticator customRealmAuthenticator(@Qualifier("adminRealm") AdminRealm adminRealm,
+                                                             @Qualifier("wxRealm") WxRealm wxRealm){
+        CustomRealmAuthenticator customRealmAuthenticator = new CustomRealmAuthenticator();
+        ArrayList<Realm> realms = new ArrayList<>();
+        realms.add(adminRealm);
+        realms.add(wxRealm);
+        customRealmAuthenticator.setRealms(realms);
+        return customRealmAuthenticator;
+    }
 }

@@ -1,5 +1,6 @@
 package com.wuyan.wx.service.personService;
 
+import com.wuyan.mall.bean.Feedback;
 import com.wuyan.mall.bean.Order;
 import com.wuyan.mall.bean.Region;
 import com.wuyan.wx.bean.*;
@@ -33,4 +34,6 @@ public interface PersonService {
     void orderCancel(Order order);
 
     void orderConfirm(Order order);
+
+    void submitFeedback(Feedback feedback);
 }

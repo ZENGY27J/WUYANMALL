@@ -8,6 +8,7 @@ import com.wuyan.mall.bean.*;
 import com.wuyan.mall.service.promotion.PromotionService;
 import com.wuyan.mall.vo.BaseRespVo;
 import com.wuyan.mall.vo.PromotionPageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class PromotionManagerController {
     PromotionService promotionService;
     /**
      * 广告页面显示
-     * @param promotionPageInfo
+     * @param promptionPageInfo
      * @return
      */
     @RequestMapping("ad/list")

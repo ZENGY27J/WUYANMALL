@@ -5,6 +5,7 @@ import com.wuyan.mall.mapper.AdminMapper;
 import com.wuyan.mall.mapper.PermissionMapper;
 import com.wuyan.mall.mapper.RoleMapper;
 import com.wuyan.mall.vo.AdminInfo;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,6 +17,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -26,7 +29,7 @@ import java.util.List;
  * @Date: 2019-10-03-20:10
  */
 @Component
-public class CustomRealm extends AuthorizingRealm {
+public class AdminRealm extends AuthorizingRealm {
 
     // 在数据查询信息匹配 执行认证和授权
     @Autowired
@@ -49,7 +52,7 @@ public class CustomRealm extends AuthorizingRealm {
         // 根据principal（用户名）去数据库查询对应的密码
         String password = adminMapper.queryPasswordByUsername(principal);
         // 判断list是否为空，若为空，n那么密码错误
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal,password,"CustomRealm");
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal,password,this.getName());
         return authenticationInfo;
     }
 
@@ -106,15 +109,47 @@ public class CustomRealm extends AuthorizingRealm {
 //        permissions.add("user:delete");
 //        permissions.add("user:update");
 //        permissions.add("user:query");
-        List<String> permissions = adminMapper.queryPermissionsByUsername(primaryPrincipal);
-        authorizationInfo.addStringPermissions(permissions);
-        List<String> roles = null;
+
+//        List<String> permissions = adminMapper.queryPermissionsByUsername(primaryPrincipal);//先注释
+//        authorizationInfo.addStringPermissions(permissions);
+//        List<String> roles = null;
+
 //        String[] roleIds = admin.getRoleIds();
 //        for (String roleId : roleIds) {
 //            Role role = roleMapper.selectByPrimaryKey(Integer.valueOf(roleId));
 //            roles.add(role.getName());
 //        }
 //        authorizationInfo.addRoles(roles);
+        // -----------------------------------------------------------------------------
+        // 先得到所有的权限详细
+        PermissionExample permissionExample = new PermissionExample();
+        List<Permission> permissions = permissionMapper.selectByExample(permissionExample);
+        // 查询该用户角色编码
+        AdminExample adminExample = new AdminExample();
+        AdminExample.Criteria criteria = adminExample.createCriteria();
+        criteria.andUsernameEqualTo(primaryPrincipal);
+        List<AdminInfo> admins = adminMapper.selectByExample(adminExample);
+        AdminInfo admin = admins.get(0);
+        Integer[] roleIds = admin.getRoleIds();
+        List<String> roleList = new ArrayList<>();
+        for (Integer roleId : roleIds) {
+            Role role = roleMapper.selectByPrimaryKey(roleId);
+            String name = role.getName();
+            roleList.add(name);
+        }
+        // 根据roleId得到权限
+        List<String> permissionList = new ArrayList<>();
+        for (Integer roleId : roleIds) {
+            for (Permission permission : permissions) {
+                if (roleId == permission.getRoleId()) {
+                    permissionList.add(permission.getPermission());
+                }
+            }
+        }
+        authorizationInfo.addRoles(roleList);
+        authorizationInfo.addStringPermissions(permissionList);
+        SecurityUtils.getSubject().getSession().setAttribute("permissions", permissionList);
+        SecurityUtils.getSubject().getSession().setAttribute("roles", roleList);
         return authorizationInfo;
     }
 }

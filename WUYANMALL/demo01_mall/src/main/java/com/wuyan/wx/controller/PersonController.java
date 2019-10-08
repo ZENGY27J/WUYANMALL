@@ -1,8 +1,10 @@
 package com.wuyan.wx.controller;
 
 import com.wuyan.mall.bean.Address;
+import com.wuyan.mall.bean.Feedback;
 import com.wuyan.mall.bean.Order;
 import com.wuyan.mall.bean.Region;
+import com.wuyan.mall.service.storageService.UploadService;
 import com.wuyan.mall.vo.BaseRespVo;
 import com.wuyan.wx.bean.*;
 import com.wuyan.wx.config.UserTokenManager;
@@ -12,7 +14,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -29,6 +33,8 @@ public class PersonController {
 
     @Autowired
     PersonService personService;
+    @Autowired
+    UploadService uploadService;
 
     @RequestMapping("/user/index")
     public BaseRespVo userOrder(HttpServletRequest request) {
@@ -119,5 +125,23 @@ public class PersonController {
         BaseRespVo ok = BaseRespVo.ok(null);
         return ok;
     }
-
+    /**
+     * 商品图片上传
+     * @param file
+     * @return
+     * localhost/wx/storage/create
+     */
+    @RequestMapping("/storage/upload")
+    public BaseRespVo fileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest httpServletRequest){
+        BaseRespVo baseRespVo = uploadService.uploadFile(file);
+        return baseRespVo;
+    }
+    @RequestMapping("/feedback/submit")
+    public BaseRespVo feedbackSubmit(@RequestBody Feedback feedback,HttpServletRequest request){
+        Integer userId = GetUserId.getUserIdByRequest(request);
+        feedback.setUserId(userId);
+        personService.submitFeedback(feedback);
+        BaseRespVo ok = BaseRespVo.ok(null);
+        return ok;
+    }
 }

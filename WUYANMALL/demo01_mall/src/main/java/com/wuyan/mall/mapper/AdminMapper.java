@@ -33,6 +33,12 @@ public interface AdminMapper {
 
     int updateByPrimaryKey(Admin record);
 
+    @Select("SELECT DISTINCT p.perm FROM j16_user_t u \n" +
+            "LEFT JOIN cskaoyan_mall_admin_role ur on u.id =ur.user_id\n" +
+            "LEFT JOIN cskaoyan_mall_role_perm rp on ur.role_id = rp.role_id\n" +
+            "left join cskaoyan_mall_permission p on rp.perm_id = p.id\n" +
+            "\n" +
+            "where u.username= #{username}")
     List<String> queryPermissionsByUsername(@Param("username") String username);
 
     @Select("select password from cskaoyan_mall_admin where username = #{username}")

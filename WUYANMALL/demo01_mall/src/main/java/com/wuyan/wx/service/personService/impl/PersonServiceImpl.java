@@ -8,6 +8,7 @@ import com.wuyan.wx.service.personService.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -30,6 +31,8 @@ public class PersonServiceImpl implements PersonService {
     AddressMapper addressMapper;
     @Autowired
     RegionMapper regionMapper;
+    @Autowired
+    FeedbackMapper feedbackMapper;
 
     @Override
     public UserLoginInfo queryUser(UserToken userToken) {
@@ -210,6 +213,9 @@ public class PersonServiceImpl implements PersonService {
         if (handleOption.getConfirm() == true) {
             myorder.setOrderStatusText("待收货");
         }
+        BigDecimal subtract = myorder.getGoodsPrice().add(myorder.getFreightPrice()).subtract(myorder.getCouponPrice());
+        myorder.setActualPrice(subtract);
+
         OrderGoodsExample orderGoodsExample = new OrderGoodsExample();
         OrderGoodsExample.Criteria criteria1 = orderGoodsExample.createCriteria();
         criteria1.andOrderIdEqualTo(orderId);
@@ -333,5 +339,17 @@ public class PersonServiceImpl implements PersonService {
         Integer id = order.getId();
         int status = 401;//用户收货
         int i = orderMapper.updateStatus(id,status);
+    }
+
+    @Override
+    public void submitFeedback(Feedback feedback) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andIdEqualTo(feedback.getUserId());
+        List<User> users = userMapper.selectByExample(userExample);
+        User user = users.get(0);
+        feedback.setUsername(user.getUsername());
+        feedback.setStatus(3);
+        int insert = feedbackMapper.insert(feedback);
     }
 }
