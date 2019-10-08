@@ -196,7 +196,10 @@ public class CartServiceImpl implements CartService {
 
         for (Cart cart : checkedGoodsList) {
             //商品总价等于所有 被选中商品单价 乘上 被选中商品的数量 之和
-            goodsTotalPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
+            BigDecimal number = new BigDecimal(cart.getNumber());
+            BigDecimal price = cart.getPrice();
+            BigDecimal thisGoodsPrice = number.multiply(price);
+            goodsTotalPrice = goodsTotalPrice.add(thisGoodsPrice);
         }
         //找到团购规则对应的团购折扣
         GrouponRules grouponRules = grouponRulesMapper.selectByPrimaryKey(Integer.parseInt(grouponRulesId));
