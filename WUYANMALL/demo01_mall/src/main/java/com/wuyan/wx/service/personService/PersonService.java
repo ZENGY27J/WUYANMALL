@@ -2,10 +2,13 @@ package com.wuyan.wx.service.personService;
 
 import com.wuyan.mall.bean.Order;
 import com.wuyan.mall.bean.Region;
+import com.wuyan.mall.bean.User;
 import com.wuyan.wx.bean.*;
 import java.util.List;
 import com.wuyan.wx.bean.UserLoginInfo;
 import com.wuyan.wx.bean.UserToken;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 个人中心业务层
@@ -33,4 +36,8 @@ public interface PersonService {
     void orderCancel(Order order);
 
     void orderConfirm(Order order);
+
+    boolean registerUser(User user, HttpServletRequest httpServletRequest);
+
+    void updateUser(String mobile, String password);
 }

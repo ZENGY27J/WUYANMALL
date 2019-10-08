@@ -3,8 +3,10 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.Coupon;
 import com.wuyan.mall.bean.CouponExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface CouponMapper {
     long countByExample(CouponExample example);
 
@@ -27,4 +29,6 @@ public interface CouponMapper {
     int updateByPrimaryKeySelective(Coupon record);
 
     int updateByPrimaryKey(Coupon record);
+
+    void updateTotal(@Param("total") int i);
 }

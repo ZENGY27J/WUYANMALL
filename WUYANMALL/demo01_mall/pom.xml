@@ -87,8 +87,11 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.12</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.0.3</version>
+        </dependency>
 
 
         <!--热部署-->

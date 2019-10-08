@@ -448,4 +448,7 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateTotal">
+    update cskaoyan_mall_groupon set total = #{total}
+  </update>
 </mapper>

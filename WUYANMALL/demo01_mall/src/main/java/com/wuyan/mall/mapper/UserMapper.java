@@ -3,8 +3,10 @@ package com.wuyan.mall.mapper;
 import com.wuyan.mall.bean.User;
 import com.wuyan.mall.bean.UserExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface UserMapper {
     long countByExample(UserExample example);
 
@@ -27,4 +29,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    void updatePassword(@Param("password") String password, @Param("mobile") String mobile);
 }

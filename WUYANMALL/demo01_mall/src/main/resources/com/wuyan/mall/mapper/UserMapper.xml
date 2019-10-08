@@ -382,4 +382,7 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updatePassword">
+      update cskaoyan_mall_user set password = #{password} where mobile = #{mobile}
+  </update>
 </mapper>

@@ -44,7 +44,7 @@ public class HomeServiceImpl implements HomeService{
         //获取商品一级类目
         List<Category> channel = categoryMapper.selectByExample(QueryUtils.getCategory(0,0));
         //获取优惠券
-        List<Coupon> couponList = couponMapper.selectByExample(QueryUtils.getCoupon(3));
+        List<Coupon> couponList = couponMapper.selectByExample(QueryUtils.getCoupon(1,3));
         //获取指定类目下的商品
         List<Category> floorGoodsList = categoryMapper.selectByExample(QueryUtils.getCategory(4,0));
 

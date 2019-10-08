@@ -9,4 +9,7 @@ public interface CouponService {
 
     List<Coupon> getAllCoupons(PageInfo pageInfo);
 
+    int couponReceive(int couponId,int userId);
+
+    int exchange(String code, Integer userId);
 }

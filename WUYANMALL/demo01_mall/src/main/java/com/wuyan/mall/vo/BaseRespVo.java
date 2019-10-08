@@ -90,4 +90,30 @@ public class BaseRespVo<T> {
         return baseRespVo;
     }
 
+    public static BaseRespVo codeError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("验证码错误");
+        baseRespVo.setErrno(703);
+        return baseRespVo;
+    }
+
+    public static BaseRespVo couponError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("优惠券已领完");
+        baseRespVo.setErrno(740);
+        return baseRespVo;
+    }
+    public static BaseRespVo exchangeError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("优惠券不正确");
+        baseRespVo.setErrno(742);
+        return baseRespVo;
+    }
+
+    public static BaseRespVo LoginError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("请登录");
+        baseRespVo.setErrno(501);
+        return baseRespVo;
+    }
 }
