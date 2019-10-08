@@ -7,6 +7,7 @@ import com.wuyan.mall.vo.DeleteCartVo;
 import com.wuyan.mall.vo.IndexCartVo;
 import com.wuyan.mall.vo.WxCartCheckoutVo;
 import com.wuyan.wx.service.cartService.CartService;
+import com.wuyan.wx.utils.GetUserId;
 import com.wuyan.wx.utils.UserTokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,10 +32,9 @@ public class CartController {
 
     @RequestMapping("/index")//已测试完成
     public BaseRespVo showCart(HttpServletRequest request) {
-        /*String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
         //IndexCartVo类对应/wx/cart/index 接口需要返回的对象
-        int userId = 1;
+        Integer userId = GetUserId.getUserIdByRequest(request);
+
         IndexCartVo indexCartVo = cartService.showCart(userId);
 
         return BaseRespVo.ok(indexCartVo);
@@ -44,9 +44,7 @@ public class CartController {
     @RequestMapping("goodscount")
     //展示购物车里面商品的数量
     public BaseRespVo showGoodsCountInCart(HttpServletRequest request) {
-        /*String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
-        int userId = 1;
+        Integer userId = GetUserId.getUserIdByRequest(request);
         int size = cartService.showGoodsCount(userId);
 
         return BaseRespVo.ok(size);
@@ -56,9 +54,7 @@ public class CartController {
     @RequestMapping("checked")
     //勾选购物车中的商品
     public BaseRespVo checkGoods(@RequestBody AcceptCartChecks acceptCartChecks, HttpServletRequest request) {
-       /* String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
-        int userId = 1;
+        Integer userId = GetUserId.getUserIdByRequest(request);
         IndexCartVo indexCartVo = cartService.checkGoods(acceptCartChecks, userId);
         return BaseRespVo.ok(indexCartVo);
     }
@@ -66,9 +62,7 @@ public class CartController {
     @RequestMapping("update")
     //更新购物车里面商品数量
     public BaseRespVo updateGoods(@RequestBody Cart cart, HttpServletRequest request) {
-        /*String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
-        int userId = 1;
+        Integer userId = GetUserId.getUserIdByRequest(request);
         cartService.update(cart, userId);
         return BaseRespVo.ok(null);
     }
@@ -77,9 +71,7 @@ public class CartController {
     @RequestMapping("add")
     //加入购物车
     public BaseRespVo addGoodsToCart(@RequestBody Cart cart, HttpServletRequest request) {
-        String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);
-        //int userId = 1;
+        Integer userId = GetUserId.getUserIdByRequest(request);
         cartService.insert(cart, userId);
         return BaseRespVo.ok(cartService.showGoodsCount(userId));
     }
@@ -87,8 +79,7 @@ public class CartController {
     @RequestMapping("delete")
     //删除购物车里面的商品
     public BaseRespVo deleteGoodsFromCart(@RequestBody DeleteCartVo deleteCartVo, HttpServletRequest request) {
-        String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);
+        Integer userId = GetUserId.getUserIdByRequest(request);
         IndexCartVo indexCartVo = new IndexCartVo();
         Integer[] productIds = deleteCartVo.getProductIds();
         indexCartVo = cartService.delete(productIds, userId);
@@ -98,9 +89,7 @@ public class CartController {
     @RequestMapping("checkout")
     //下单接口
     public BaseRespVo checkOutCart(String cartId, String addressId, String couponId, String grouponRulesId, HttpServletRequest request) {
-         /*String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
-        int userId = 1;
+        Integer userId = GetUserId.getUserIdByRequest(request);
 
         cartService.checkoutGoods(cartId, addressId, couponId, grouponRulesId, userId);
         BaseRespVo<Object> baseRespVo = new BaseRespVo<>();
