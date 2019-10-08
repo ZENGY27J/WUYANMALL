@@ -46,4 +46,6 @@ public class WxGrouponServiceImpl implements WxGrouponService {
         databean.setData(grouponList);
         return databean;
     }
+
+
 }

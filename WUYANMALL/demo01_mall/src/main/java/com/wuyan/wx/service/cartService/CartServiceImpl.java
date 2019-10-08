@@ -245,8 +245,20 @@ public class CartServiceImpl implements CartService {
         order.setDeleted(false);
 
         orderMapper.insert(order);
-/*
-        WxCartCheckoutVo wxCartCheckoutVo = new WxCartCheckoutVo();
+
+        Groupon groupon = new Groupon();
+        groupon.setOrderId(order.getId());
+        groupon.setRulesId(Integer.parseInt(grouponRulesId));
+        groupon.setUserId(userId);
+        groupon.setCreatorUserId(userId);
+        groupon.setDeleted(false);
+        groupon.setAddTime(new Date());
+        groupon.setPayed(false);
+        grouponMapper.insert(groupon);
+
+        groupon.setGrouponId(groupon.getId());
+        grouponMapper.updateByPrimaryKey(groupon);
+        /*       WxCartCheckoutVo wxCartCheckoutVo = new WxCartCheckoutVo();
         List<Cart> checkedGoodsList = new ArrayList<>();
         BigDecimal goodsTotalPrice = new BigDecimal(0);
         BigDecimal freightPrice = new BigDecimal(0);
