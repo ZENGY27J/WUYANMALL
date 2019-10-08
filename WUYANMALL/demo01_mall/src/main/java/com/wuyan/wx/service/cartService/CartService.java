@@ -17,4 +17,6 @@ public interface CartService {
     int showGoodsCount(Integer userId);//显示购物车商品数量
 
     WxCartCheckoutVo checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId);//下单
+
+    IndexCartVo delete(Integer[] productIds, int userId);
 }

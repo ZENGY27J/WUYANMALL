@@ -15,11 +15,11 @@ public class AcceptCartChecks {
         this.productIds = productIds;
     }
 
-    public boolean isChecked() {
+    public boolean getIsChecked() {
         return isChecked;
     }
 
-    public void setChecked(boolean checked) {
+    public void setIsChecked(boolean checked) {
         isChecked = checked;
     }
 }

@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 public class IndexCartVo {
-    List<Cart> carts;
+    List<Cart> cartList;
 
     Map<String, Object> cartTotal;
 
-    public List<Cart> getCarts() {
-        return carts;
+    public List<Cart> getCartList() {
+        return cartList;
     }
 
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
+    public void setCartList(List<Cart> cartList) {
+        this.cartList = cartList;
     }
 
     public Map<String, Object> getCartTotal() {
