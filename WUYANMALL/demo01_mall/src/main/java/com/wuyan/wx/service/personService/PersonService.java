@@ -38,4 +38,6 @@ public interface PersonService {
     void orderConfirm(Order order);
 
     boolean registerUser(User user, HttpServletRequest httpServletRequest);
+
+    void updateUser(String mobile, String password);
 }

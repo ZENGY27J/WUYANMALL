@@ -351,4 +351,9 @@ public class PersonServiceImpl implements PersonService {
         }
         return flag;
     }
+
+    @Override
+    public void updateUser(String mobile, String password) {
+        userMapper.updatePassword(password,mobile);
+    }
 }

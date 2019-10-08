@@ -84,4 +84,17 @@ public class UserLoginController {
         System.out.println(id);
         return BaseRespVo.ok(id);
     }
+    @RequestMapping("auth/reset")
+    public BaseRespVo reset(@RequestBody Map map){
+        String mobile = (String) map.get("mobile");
+        String password = (String) map.get("password");
+        String  code = (String) map.get("code");
+        Session session = SecurityUtils.getSubject().getSession();
+        String codeFromSession = (String) session.getAttribute("code");
+        if (!code.equals(codeFromSession)){
+            return BaseRespVo.codeError();
+        }
+        personService.updateUser(mobile,password);
+        return BaseRespVo.ok(null);
+    }
 }
