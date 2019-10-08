@@ -28,9 +28,10 @@ public class QueryUtils {
         categoryExample.createCriteria().andIdEqualTo(id);
         return categoryExample;
     }
-    public static CouponExample getCoupon(int size){
-        PageHelper.startPage(1, size);
-        return new CouponExample();
+    public static CouponExample getCoupon(int couponId){
+        CouponExample couponExample = new CouponExample();
+        couponExample.createCriteria().andIdEqualTo(couponId);
+        return couponExample;
     }
 
     public static CouponExample getCoupon(int page, int size) {
@@ -130,5 +131,11 @@ public class QueryUtils {
         TopicExample topicExample = new TopicExample();
         topicExample.createCriteria().andIdEqualTo(id);
         return topicExample;
+    }
+
+    public static CouponExample getCouponByCode(String code) {
+        CouponExample couponExample = new CouponExample();
+        couponExample.createCriteria().andCodeEqualTo(code);
+        return couponExample;
     }
 }
