@@ -77,19 +77,18 @@ public class CartController {
     @RequestMapping("add")
     //加入购物车
     public BaseRespVo addGoodsToCart(@RequestBody Cart cart, HttpServletRequest request) {
-        /*String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
-        int userId = 1;
+        String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
+        //int userId = 1;
         cartService.insert(cart, userId);
         return BaseRespVo.ok(cartService.showGoodsCount(userId));
     }
 
     @RequestMapping("delete")
     //删除购物车里面的商品
-    public BaseRespVo deleteGoodsFromCart(@RequestBody DeleteCartVo deleteCartVo) {
-        /*String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
-        Integer userId = UserTokenManager.getUserId(tokenKey);*/
-        int userId = 1;
+    public BaseRespVo deleteGoodsFromCart(@RequestBody DeleteCartVo deleteCartVo, HttpServletRequest request) {
+        String tokenKey = request.getHeader("X-cskaoyanmall-Admin-Token");
+        Integer userId = UserTokenManager.getUserId(tokenKey);
         IndexCartVo indexCartVo = new IndexCartVo();
         Integer[] productIds = deleteCartVo.getProductIds();
         indexCartVo = cartService.delete(productIds, userId);
@@ -103,11 +102,10 @@ public class CartController {
         Integer userId = UserTokenManager.getUserId(tokenKey);*/
         int userId = 1;
 
-        WxCartCheckoutVo wxCartCheckoutVo = cartService.checkoutGoods(cartId, addressId, couponId, grouponRulesId, userId);
-        BaseRespVo baseRespVo = new BaseRespVo();
-
-        /*baseRespVo.setErrmsg("系统内部错误");
-        baseRespVo.setErrno(502);*/
+        cartService.checkoutGoods(cartId, addressId, couponId, grouponRulesId, userId);
+        BaseRespVo<Object> baseRespVo = new BaseRespVo<>();
+        baseRespVo.setErrmsg("系统内部错误");
+        baseRespVo.setErrno(502);
         return baseRespVo;
     }
 

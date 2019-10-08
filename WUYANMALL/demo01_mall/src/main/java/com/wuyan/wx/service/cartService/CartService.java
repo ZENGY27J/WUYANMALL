@@ -3,7 +3,6 @@ package com.wuyan.wx.service.cartService;
 import com.wuyan.mall.bean.Accept.AcceptCartChecks;
 import com.wuyan.mall.bean.Cart;
 import com.wuyan.mall.vo.IndexCartVo;
-import com.wuyan.mall.vo.WxCartCheckoutVo;
 
 public interface CartService {
     IndexCartVo showCart(Integer userId);//显示购物车
@@ -16,7 +15,7 @@ public interface CartService {
 
     int showGoodsCount(Integer userId);//显示购物车商品数量
 
-    WxCartCheckoutVo checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId);//下单
+    void checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId);//下单
 
     IndexCartVo delete(Integer[] productIds, int userId);
 }

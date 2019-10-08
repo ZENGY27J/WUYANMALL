@@ -51,6 +51,16 @@ public class PageInfo {
 
     int categoryId;
 
+    int brandId;
+
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }

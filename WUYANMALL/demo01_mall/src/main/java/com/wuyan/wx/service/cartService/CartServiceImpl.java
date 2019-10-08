@@ -4,11 +4,11 @@ import com.wuyan.mall.bean.*;
 import com.wuyan.mall.bean.Accept.AcceptCartChecks;
 import com.wuyan.mall.mapper.*;
 import com.wuyan.mall.vo.IndexCartVo;
-import com.wuyan.mall.vo.WxCartCheckoutVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,6 +37,9 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     GoodsProductMapper goodsProductMapper;
+
+    @Autowired
+    OrderMapper orderMapper;
 
 
     //显示购物车商品状态
@@ -166,10 +169,11 @@ public class CartServiceImpl implements CartService {
         return carts.size();
     }
 
-    //下单接口
+    //下单接口, 将订单插入到order 表中
     @Override
-    public WxCartCheckoutVo checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId) {
-        WxCartCheckoutVo wxCartCheckoutVo = new WxCartCheckoutVo();
+    public void checkoutGoods(String cartId, String addressId, String couponId, String grouponRulesId, int userId) {
+        Order order = new Order();
+
         List<Cart> checkedGoodsList = new ArrayList<>();
         BigDecimal goodsTotalPrice = new BigDecimal(0);
         BigDecimal freightPrice = new BigDecimal(0);
@@ -200,7 +204,72 @@ public class CartServiceImpl implements CartService {
             discount = grouponRules.getDiscount();
         }
 
+        Address address = new Address();
+        address.setAddress("王道曾阳");
+        address.setMobile("7758521");
+        address.setName("小肥羊");
+
+
+        //根据当前时间生成订单编号
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String orderSn = simpleDateFormat.format(new Date());
+
+        if (goodsTotalPrice.add(freightPrice).subtract(couponPrice).subtract(discount).compareTo(new BigDecimal(88)) >= 0) {
+            freightPrice.add(new BigDecimal(0));
+        } else {
+            freightPrice.add(new BigDecimal(15));
+        }
+
+        order.setIntegralPrice(new BigDecimal(0));
+        order.setMessage("我真的留不了言啊, 还不让我插空的");
+        order.setConsignee(address.getName());
+        order.setOrderSn(orderSn);
+        order.setUserId(userId);
+        order.setOrderStatus((short)101);
+        order.setMobile(address.getMobile());
+        order.setGrouponPrice(discount);
+        order.setAddress(address.toString());
+        //订单总价等于商品总价 + 运费 - 优惠金额
+        order.setOrderPrice(goodsTotalPrice.add(freightPrice).subtract(couponPrice));
+        //实付费用 = 订单总价 - 团购优惠价减免
+        order.setActualPrice(goodsTotalPrice.add(freightPrice).subtract(couponPrice).subtract(discount));
+        order.setFreightPrice(freightPrice);
+        order.setCouponPrice(couponPrice);
+        order.setGoodsPrice(goodsTotalPrice);
+        order.setAddTime(new Date());
+        order.setUpdateTime(new Date());
+        order.setConfirmTime(new Date());
+        order.setEndTime(new Date());
+        order.setComments((short) 0);
+        order.setShipSn("1111");    //发货编号
+        order.setDeleted(false);
+
+        orderMapper.insert(order);
+/*
+        WxCartCheckoutVo wxCartCheckoutVo = new WxCartCheckoutVo();
+        List<Cart> checkedGoodsList = new ArrayList<>();
+        BigDecimal goodsTotalPrice = new BigDecimal(0);
+        BigDecimal freightPrice = new BigDecimal(0);
+        BigDecimal couponPrice = couponMapper.selectByPrimaryKey(Integer.parseInt(couponId)).getDiscount();
+
+
+        CartExample cartExample = new CartExample();
+        CartExample.Criteria criteria = cartExample.createCriteria();
+        //找出当前用户被选中的商品
+        criteria.andUserIdEqualTo(userId).andCheckedEqualTo(true);
+
+        checkedGoodsList = cartMapper.selectByExample(cartExample);
+
+        for (Cart cart : checkedGoodsList) {
+            //商品总价等于所有 被选中商品单价 乘上 被选中商品的数量 之和
+            goodsTotalPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
+        }
+        //找到团购规则对应的团购折扣
+        GrouponRules grouponRules = grouponRulesMapper.selectByPrimaryKey(Integer.parseInt(grouponRulesId));
+        BigDecimal discount = grouponRules.getDiscount();
+
         Address address = addressMapper.selectByPrimaryKey(Integer.parseInt(addressId));
+
 
         wxCartCheckoutVo.setGrouponRulesId(Integer.parseInt(grouponRulesId));
         wxCartCheckoutVo.setGrouponPrice(discount);
@@ -214,7 +283,7 @@ public class CartServiceImpl implements CartService {
         wxCartCheckoutVo.setGoodsTotalPrice(goodsTotalPrice);
         wxCartCheckoutVo.setAddressId(Integer.parseInt(addressId));
 
-        return wxCartCheckoutVo;
+        return wxCartCheckoutVo;*/
     }
 
     @Override
