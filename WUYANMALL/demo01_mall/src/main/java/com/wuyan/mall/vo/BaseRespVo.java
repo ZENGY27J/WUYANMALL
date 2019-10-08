@@ -116,4 +116,11 @@ public class BaseRespVo<T> {
         baseRespVo.setErrno(501);
         return baseRespVo;
     }
+
+    public static BaseRespVo orderError(){
+        BaseRespVo baseRespVo = new BaseRespVo();
+        baseRespVo.setErrmsg("订单不能支付");
+        baseRespVo.setErrno(724);
+        return baseRespVo;
+    }
 }
